@@ -1,9 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Easy Clap">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JavaFX/Controller/MainSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaFX/Controller/MainSceneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Controller/CreateCompanyController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Controller/EditCompanyController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Controller/LoginSceneController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Scenes/CreateCompanyScene$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Scenes/CreateCompanyScene$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Scenes/CreateCompanyScene.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Scenes/LoginScene.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Scenes/MainScene$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Scenes/MainScene$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Scenes/MainScene.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/META-INF/FinalVersion.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/META-INF/desktop.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/FileFactory/ReaderFactory$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/FileFactory/ReaderFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/FileFactory/WriterFactory$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/FileFactory/WriterFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/FileType/FileType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Interface/iReader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Interface/iWriter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Reader/JSONReader$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Reader/JSONReader$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Reader/JSONReader$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Reader/JSONReader$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Reader/JSONReader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Reader/XMLReader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Writer/JSONWriter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Writer/XMLWriter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/Singleton/AgentSingleton.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/Singleton/CompanySingleton.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/Singleton/ReservationSingleton.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/Singleton/TravelerSingleton.class" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,6 +87,91 @@
   <component name="FavoritesManager">
     <favorites_list name="JavaFxApplication" />
   </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/JavaFX/Controller/MainSceneController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="50" column="63" selection-start-line="50" selection-start-column="50" selection-end-line="50" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/JavaFX/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="24" column="26" lean-forward="true" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/JavaFX/Scenes/MainScene.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/JavaFX/Scenes/LoginScene.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/JavaFX/Scenes/EditCompanyScene.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/JavaFX/Scenes/CreateCompanyScene.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/Singleton/TravelerSingleton.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/Singleton/ReservationSingleton.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/Person/Agent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -65,6 +182,12 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>addtrip</find>
+      <find>selectedAgent</find>
+    </findStrings>
+  </component>
   <component name="FindManager">
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="false" />
@@ -73,11 +196,75 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/JavaFX/Controller/MainSceneController.java" />
+      </list>
+    </option>
+  </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="128" />
+    <option name="y" value="23" />
+    <option name="width" value="1476" />
+    <option name="height" value="1027" />
+  </component>
   <component name="ProjectId" id="1U7mY2yduYV9l9HcRPmyX6gQe1M" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="FinalVersion" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FinalVersion" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FinalVersion" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FinalVersion" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FinalVersion" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FinalVersion" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaFX" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FinalVersion" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FinalVersion" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaFX" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FinalVersion" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FinalVersion" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaFX" type="462c0819:PsiDirectoryNode" />
+              <item name="Scenes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FinalVersion" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FinalVersion" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Project" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="true" />
@@ -93,8 +280,9 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1574914640265" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/fxml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -103,15 +291,8 @@
     <property name="recentsLimit" value="5" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Drive\Fall 2019\Object-Oriented Development\Project\FinalVersion\resources\fxml" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="Project.Properties" />
-      <recent name="Project.File.FileType" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Drive\Fall 2019\Object-Oriented Development\Project\FinalVersion\resources\fxml" />
@@ -119,6 +300,13 @@
       <recent name="E:\Drive\Fall 2019\Object-Oriented Development\Project\FinalVersion\resources" />
       <recent name="E:\Drive\Fall 2019\Object-Oriented Development\Project\FinalVersion\src\Project\Person" />
       <recent name="E:\Drive\Fall 2019\Object-Oriented Development\Project\FinalVersion\src\Project\File\Interface" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Project.Properties" />
+      <recent name="Project.File.FileType" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Drive\Fall 2019\Object-Oriented Development\Project\FinalVersion\resources\fxml" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -185,7 +373,6 @@
       </method>
     </configuration>
     <configuration default="true" type="TestNG">
-      <option name="TEST_OBJECT" value="CLASS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="moduleWithDependencies" />
@@ -225,43 +412,111 @@
       <workItem from="1574799793725" duration="5534000" />
       <workItem from="1574807619211" duration="12692000" />
       <workItem from="1574903344397" duration="7171000" />
-      <workItem from="1574911004926" duration="2699000" />
     </task>
-    <task id="LOCAL-00001" summary="Easy Clap">
-      <created>1574913752842</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1574913752842</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Easy Clap">
-      <created>1574913765363</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1574913765363</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="128" y="23" width="1476" height="1027" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20781033" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" visible="true" weight="0.27593583" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="Easy Clap" />
-    <option name="LAST_COMMIT_MESSAGE" value="Easy Clap" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/JavaFX/Controller/MainSceneController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="50" column="63" selection-start-line="50" selection-start-column="50" selection-end-line="50" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JavaFX/Scenes/LoginScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JavaFX/Scenes/EditCompanyScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JavaFX/Scenes/CreateCompanyScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Singleton/TravelerSingleton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Singleton/ReservationSingleton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Person/Agent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JavaFX/Scenes/MainScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JavaFX/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="24" column="26" lean-forward="true" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
