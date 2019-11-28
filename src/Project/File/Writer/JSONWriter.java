@@ -2,6 +2,8 @@ package Project.File.Writer;
 
 
 
+import Project.File.FileFactory.ReaderFactory;
+import Project.File.FileType.FileType;
 import Project.File.Interface.iWriter;
 import Project.Person.Agent;
 import Project.Person.Company;
@@ -52,12 +54,12 @@ public class JSONWriter implements iWriter
             e.printStackTrace();
         }
     }
-    //Only for initally creating package json ahahahaah I cheat.
 
 
     public void createCompanyDirectory(Path filePath)
     {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        List<Agent> populateAgent = ReaderFactory.readFile(FileType.JSON).readAgentFromFile();
         if(Files.exists(filePath))
         {
 
@@ -72,6 +74,11 @@ public class JSONWriter implements iWriter
             try
             {
                 Files.createDirectories(filePath);
+                for( Agent agent : populateAgent)
+                {
+                    Path agentPath = Paths.get(filePath + "/" + agent.getName());
+                    Files.createDirectories(agentPath);
+                }
                 alert.setTitle("Information");
                 alert.setHeaderText(null);
                 alert.setContentText("Company Created!");

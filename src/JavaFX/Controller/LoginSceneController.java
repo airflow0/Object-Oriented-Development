@@ -53,6 +53,7 @@ public class LoginSceneController implements Initializable
         {
             int index = agentComboBox.getSelectionModel().getSelectedIndex();
             Agent agent = agentList.get(index);
+            System.out.println(agent.getName());
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.close();
             MainScene scene = new MainScene();

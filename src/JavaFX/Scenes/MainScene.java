@@ -40,11 +40,13 @@ public class MainScene
         try
         {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainScene.fxml"));
+
             Parent root = (Parent) loader.load();
             MainSceneController controller = loader.getController();
             controller.setAgent(agent);
             controller.setSelectedAgentLabelText("Agent: " + agent.getName());
-            controller.initialize();
+            controller.sexybottom();
+
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(new Scene(root, 1920, 1080));
             stage.show();

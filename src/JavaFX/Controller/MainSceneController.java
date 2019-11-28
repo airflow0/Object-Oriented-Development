@@ -45,9 +45,15 @@ public class MainSceneController
     private List<Company> companies;
     private Agent selectedAgent;
 
-    public void initialize()
+
+    public void sexybottom()
     {
         companies = CompanySingleton.getCompanyList();
+        for(Company company : companies)
+        {
+            System.out.println(company.getCompanyName());
+        }
+        System.out.println("sexybottom: " +selectedAgent.getName());
         TripSingleton.populateTripList(companies, selectedAgent);
 
         for(Company company : companies)
@@ -129,7 +135,7 @@ public class MainSceneController
     public void AddTrip(MouseEvent e)
     {
         int index = companyList.getItems().indexOf(companyList.getSelectionModel().getSelectedItem());
-        Trip tempTrip = new Trip(companies.get(index));
+        Trip tempTrip = new Trip(companies.get(index), selectedAgent);
         companies.get(index).addToTripsList(tempTrip);
         tempTrip.createTrip();
         tripListView.getItems().add(tempTrip.getUniqueID());
