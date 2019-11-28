@@ -46,7 +46,7 @@ public class MainSceneController
     private Agent selectedAgent;
 
 
-    public void sexybottom()
+    public void initalize()
     {
         companies = CompanySingleton.getCompanyList();
         for(Company company : companies)

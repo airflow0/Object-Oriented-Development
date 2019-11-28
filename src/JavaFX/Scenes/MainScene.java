@@ -45,7 +45,7 @@ public class MainScene
             MainSceneController controller = loader.getController();
             controller.setAgent(agent);
             controller.setSelectedAgentLabelText("Agent: " + agent.getName());
-            controller.sexybottom();
+            controller.initalize();
 
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(new Scene(root, 1920, 1080));
