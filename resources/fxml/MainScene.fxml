@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="allBackground" maxHeight="1080.0" maxWidth="1920.0" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFX.Controller.MainSceneController">
+    <children>
+        <VBox id="leftVBox" prefHeight="1086.0" prefWidth="522.0">
+            <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="69.0" prefWidth="522.0">
+                    <children>
+                        <Label id="logintext" text="COMPANY NAME">
+                            <font>
+                                <Font name="SansSerif Regular" size="24.0" />
+                            </font>
+                            <padding>
+                                <Insets left="50.0" />
+                            </padding>
+                        </Label>
+                    </children>
+                </HBox>
+                <BorderPane prefHeight="880.0" prefWidth="450.0">
+                    <top>
+                        <HBox id="selectsearch" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox prefHeight="100.0" prefWidth="150.0" />
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="150.0">
+                           <children>
+                              <Label id="logintext" fx:id="selectedAgentLabel" text="Label">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="150.0" />
+                     </children></HBox>
+                    </top>
+                    <bottom>
+                        <HBox alignment="CENTER" prefHeight="118.0" prefWidth="522.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button id="buttonTemplate" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#CreateCompanyClicked" text="Create Company">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button id="buttonTemplate" mnemonicParsing="false" onMouseClicked="#EditCompanyClicked" text="Edit Company">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children></HBox>
+                    </bottom>
+                    <right>
+                        <VBox prefHeight="662.0" prefWidth="73.0" BorderPane.alignment="CENTER" />
+                    </right>
+                    <left>
+                        <VBox prefHeight="617.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+                    </left>
+                    <center>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                            <top>
+                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="322.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <TextField id="searchclient" alignment="CENTER" prefHeight="36.0" prefWidth="352.0" promptText="Search Companies">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                            <HBox.margin>
+                                                <Insets top="50.0" />
+                                            </HBox.margin>
+                                        </TextField>
+                                    </children>
+                                </HBox>
+                            </top>
+                            <bottom>
+                                <Pane prefHeight="34.0" prefWidth="349.0" BorderPane.alignment="CENTER" />
+                            </bottom>
+                            <center>
+                                <ListView id="clientlist" fx:id="companyList" fixedCellSize="-10.0" prefHeight="565.0" prefWidth="349.0" BorderPane.alignment="CENTER" />
+                            </center>
+                        </BorderPane>
+                    </center>
+                </BorderPane>
+                <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" />
+            </children>
+        </VBox>
+        <VBox layoutX="1044.0" layoutY="3.0" prefHeight="1080.0" prefWidth="872.0">
+         <children>
+            <VBox prefHeight="360.0" prefWidth="872.0" />
+            <VBox prefHeight="360.0" prefWidth="872.0" />
+            <VBox prefHeight="360.0" prefWidth="872.0" />
+            <Label text="Label" />
+         </children></VBox>
+      <Pane fx:id="topMenuPane" prefHeight="27.0" prefWidth="1920.0">
+         <children>
+            <Label id="CloseButton" fx:id="closeButton" layoutX="1896.0" layoutY="9.0" onMouseClicked="#CloseButtonClicked" prefHeight="25.0" prefWidth="20.0" text="X" textAlignment="RIGHT">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <HBox layoutX="522.0" prefHeight="227.0" prefWidth="522.0" />
+      <BorderPane layoutX="522.0" layoutY="223.0" prefHeight="858.0" prefWidth="522.0">
+         <left>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+         </right>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField id="searchclient" fx:id="searchTripField" alignment="CENTER" prefHeight="36.0" prefWidth="352.0" promptText="Search Trip" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <ListView id="clientlist" fx:id="tripListView" prefHeight="541.0" prefWidth="378.0" visible="false">
+                     <VBox.margin>
+                        <Insets top="6.0" />
+                     </VBox.margin>
+                  </ListView>
+               </children>
+            </VBox>
+         </center>
+         <bottom>
+            <HBox alignment="TOP_CENTER" prefHeight="267.0" prefWidth="522.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button id="buttonTemplate" fx:id="AddTripButton" mnemonicParsing="false" onMousePressed="#AddTrip" prefHeight="40.0" prefWidth="150.0" text="Add Trip" visible="false">
+                     <HBox.margin>
+                        <Insets right="5.0" top="50.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="buttonTemplate" fx:id="EditTripButton" mnemonicParsing="false" onMousePressed="#EditTrip" prefHeight="40.0" prefWidth="150.0" text="Edit Trip" visible="false">
+                     <HBox.margin>
+                        <Insets top="50.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </HBox>
+         </bottom>
+      </BorderPane>
+    </children>
+</AnchorPane>

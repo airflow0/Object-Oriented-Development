@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="allBackground" maxHeight="250.0" maxWidth="475.0" minHeight="250.0" minWidth="475.0" prefHeight="250.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFX.Controller.LoginSceneController">
+    <children>
+        <Label id="logintext" layoutX="7.0" layoutY="6.0" text="System Login" />
+        <Label id="loginButton" fx:id="loginButton" layoutX="158.0" layoutY="207.0" onMouseClicked="#loginTextClick" text="Login">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label id="loginButton" layoutX="286.0" layoutY="207.0" onMouseClicked="#loginClose" text="Close">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+      <ComboBox fx:id="agentComboBox" layoutX="102.0" layoutY="113.0" prefHeight="25.0" prefWidth="272.0" promptText="Select Agent" />
+    </children>
+</AnchorPane>

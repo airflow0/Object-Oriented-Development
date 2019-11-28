@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="allBackground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFX.Controller.CreateCompanyController">
+   <children>
+      <Label id="logintext" layoutX="54.0" layoutY="58.0" text="Company Name:" />
+      <TextField fx:id="companyNameInput" layoutX="151.0" layoutY="54.0" prefHeight="25.0" prefWidth="211.0" />
+      <Button id="buttonTemplate" layoutX="105.0" layoutY="94.0" mnemonicParsing="false" onMouseClicked="#AddToCompanyList" text="Add Company" />
+      <Button id="buttonTemplate" fx:id="closeButton" layoutX="269.0" layoutY="94.0" mnemonicParsing="false" onMouseClicked="#CloseButtonClicked" prefHeight="25.0" prefWidth="92.0" text="Close" />
+      <Label id="logintext" layoutX="8.0" layoutY="6.0" text="Add Company" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,21 @@
+[ {
+  "travelTo" : "New York",
+  "travelFrom" : "Atlanta",
+  "price" : 500.0,
+  "hoursOfTravel" : 12
+}, {
+  "travelTo" : "Knoxville",
+  "travelFrom" : "New York",
+  "price" : 450.0,
+  "hoursOfTravel" : 18
+}, {
+  "travelTo" : "San Antonio",
+  "travelFrom" : "Miami",
+  "price" : 800.0,
+  "hoursOfTravel" : 20
+}, {
+  "travelTo" : "Washington",
+  "travelFrom" : "El Paso",
+  "price" : 1000.0,
+  "hoursOfTravel" : 35
+} ]
