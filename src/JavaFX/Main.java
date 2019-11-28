@@ -35,7 +35,7 @@ public class Main extends Application {
 
         WriterFactory.createWriter(FileType.JSON).createPackage(packages);*/
 
-        Agent agent1 = new Agent("James Lee");
+        /*Agent agent1 = new Agent("James Lee");
         Agent agent2 = new Agent("Murdock");
         Agent agent3 = new Agent("Steven Garcia");
         Agent agent4 = new Agent("Aaron Badgett");
@@ -46,7 +46,7 @@ public class Main extends Application {
         agents.add(agent3);
         agents.add(agent4);
         agents.add(agent5);
-        WriterFactory.createWriter(FileType.JSON).createAgentList(agents);
+        WriterFactory.createWriter(FileType.JSON).createAgentList(agents);*/
         LoginScene loginScene = new LoginScene(primaryStage);
         loginScene.createLoginScene();
 

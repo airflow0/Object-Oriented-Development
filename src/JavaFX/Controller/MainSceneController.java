@@ -22,26 +22,31 @@ import java.util.ResourceBundle;
 
 public class MainSceneController
 {
+    //Company section
     @FXML
     private ListView<String> companyList;
-    @FXML
-    private Label closeButton;
 
-    @FXML
-    private ListView<String> tripListView;
-    @FXML
-    private TextField searchTripField;
+    //Top Bar Navigation
+    @FXML private Label closeButton;
 
-    @FXML
-    private Button AddTripButton;
-    @FXML
-    private Button EditTripButton;
+    //Trip Section
+    @FXML private Label tripLabel;
+    @FXML private ListView<String> tripListView;
+    @FXML private TextField searchTripField;
+    @FXML private Button AddTripButton;
+    @FXML private Button EditTripButton;
 
-    @FXML
-    private Label selectedAgentLabel;
-    //TODO - GET LIST OF CLIENTS FROM XML OR JSON
+    //User section
+    @FXML private Label selectedAgentLabel;
+
+    //Traveler Section
+    @FXML private Label travelerLabel;
+    @FXML private TextArea travelerTextArea;
+    @FXML private Button travelerSaveButton;
+    @FXML private Button travelerNextButton;
+
+
     //protected List<String> clients = new ArrayList<>();
-
     private List<Company> companies;
     private Agent selectedAgent;
 
@@ -49,13 +54,7 @@ public class MainSceneController
     public void initalize()
     {
         companies = CompanySingleton.getCompanyList();
-        for(Company company : companies)
-        {
-            System.out.println(company.getCompanyName());
-        }
-        System.out.println("sexybottom: " +selectedAgent.getName());
         TripSingleton.populateTripList(companies, selectedAgent);
-
         for(Company company : companies)
         {
             companyList.getItems().add(company.getCompanyName());
@@ -69,7 +68,9 @@ public class MainSceneController
                 tripListView.setVisible(true);
                 searchTripField.setVisible(true);
                 AddTripButton.setVisible(true);
+                tripLabel.setVisible(true);
                 EditTripButton.setVisible(true);
+
                 int index = companyList.getItems().indexOf(companyList.getSelectionModel().getSelectedItem());
                 tripListView.getItems().clear();
                 tripListView.getItems().addAll(companies.get(index).getTripList());
@@ -83,7 +84,19 @@ public class MainSceneController
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
             {
+                travelerLabel.setVisible(true);
+                travelerTextArea.setVisible(true);
+                travelerNextButton.setVisible(true);
+                travelerSaveButton.setVisible(true);
 
+            }
+        });
+        travelerTextArea.textProperty().addListener(new ChangeListener<String>()
+        {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
+            {
+                travelerSaveButton.setDisable(false);
             }
         });
     }

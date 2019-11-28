@@ -3,9 +3,21 @@
     -fx-background-color: linear-gradient(to bottom right ,#2d2d35,#25262a);
     -fx-border-color: dimgray;
     -fx-border-width: 0.5px;
-
 }
-
+#allBackgroundRight
+{
+    -fx-background-color: linear-gradient(to bottom right ,#2d2d35,#25262a);
+    -fx-border-color: dimgray;
+    -fx-border-style: none solid none none;
+    -fx-border-width: 0.5px;
+}
+#allBackgroundTop
+{
+    -fx-background-color: linear-gradient(to bottom right ,#2d2d35,#25262a);
+    -fx-border-color: dimgray;
+    -fx-border-style: solid none none none;
+    -fx-border-width: 0.5px;
+}
 #logintext
 {
     -fx-text-fill : white;
@@ -39,27 +51,56 @@
     -fx-font-size: 14pt;
     -fx-font-weight: bold;
 
+    -fx-background-color: #1f1f21;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: white;
+    -fx-border-width: 0.5px;
 
+
+
+
+}
+#clientlist:pressed:focused
+{
+
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #00bfff;
+    -fx-border-width: 1px;
+}
+#clientlist:hover
+{
+    -fx-font-family: 'Helvetica', Arial, sans-serif;
+    -fx-font-size: 14pt;
+    -fx-font-weight: bold;
+
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #00bfff;
+    -fx-border-width: 1px;
 }
 #clientlist .list-cell
 {
     -fx-background-color: transparent;
     -fx-text-fill: white;
     -fx-alignment: center;
-    -fx-cell-size: 56;
+    -fx-cell-size: 40;
+
 
 }
 #clientlist .list-cell:hover
-{//dasd
--fx-text-fill: #0870c9;
+{
+    -fx-text-fill: #00bfff;
     /*-fx-background-color: black;
     -fx-background-color: #2d2d35;*/
     -fx-background-radius: 20px 20px;
 
+
 }
 #clientlist .list-cell:selected
 {
-    -fx-text-fill: #0870c9;
+    -fx-text-fill: #00bfff;
 }
 #clientlist .scroll-bar:vertical
 {
@@ -128,3 +169,13 @@
 #buttonTemplate Text {
     -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.8) , 0, 0.0 , 0 , 1);
 }
+#travelerTextArea
+{
+    -fx-text-fill: white;
+    text-area-background: #1f1f21;
+}
+#travelerTextArea .content
+{
+    -fx-background-color: #1f1f21;
+}
+
