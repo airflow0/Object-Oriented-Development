@@ -23,8 +23,6 @@ public class CreateCompanyController
 {
     @FXML
     private TextField companyNameInput;
-    @FXML
-    private ListView companyList;
     private MainSceneController mainScene;
 
     public void CloseButtonClicked(MouseEvent e)

@@ -56,10 +56,6 @@
     -fx-border-radius: 5;
     -fx-border-color: white;
     -fx-border-width: 0.5px;
-
-
-
-
 }
 #clientlist:pressed:focused
 {
@@ -137,7 +133,7 @@
 #CloseButton:hover
 {
     -fx-font-size: 18px;
-    -fx-text-fill: aqua;
+    -fx-text-fill: #00bfff;
     -fx-font-weight: bold;
 }
 
@@ -173,9 +169,33 @@
 {
     -fx-text-fill: white;
     text-area-background: #1f1f21;
+
 }
 #travelerTextArea .content
 {
     -fx-background-color: #1f1f21;
+    -fx-text-fill: white;
 }
-
+#comboBox
+{
+    -fx-background-color: #1f1f21 #1f1f21 #1f1f21 #1f1f21;
+    -fx-background-insets: 0px 0px -1px 0px 0px 1px 2px;
+    -fx-border-radius: 3px 3px 2px 1px;
+}
+#comboBox .list-cell
+{
+    -fx-background-color: #1f1f21;
+    -fx-text-fill: white;
+}
+#comboBox .list-cell:hover
+{
+    -fx-text-fill: #00bfff;
+}
+#comboBox .arrow-button
+ {
+     -fx-background-color: #1f1f21;
+ }
+#comboBox .arrow-button .arrow
+{
+    -fx-background-color: white;
+}

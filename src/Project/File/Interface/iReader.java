@@ -4,6 +4,7 @@ import Project.Person.Agent;
 import Project.Person.Company;
 import Project.Person.Traveler;
 import Project.Person.Trip;
+import Project.Reservation.Package;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -14,4 +15,5 @@ public interface iReader
     List<Traveler> readTravelerFromFile(Path filePath);
     List<Trip> readTripFromDirectory(Company company, Agent agent);
     List<Company> readCompanyFromDirectory();
+    List<Package> readDefaultPackage();
 }

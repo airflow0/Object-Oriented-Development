@@ -1,44 +1,38 @@
 package JavaFX.Controller;
 
 import Data.DataController;
+import JavaFX.Controller.MainScene.CompanyController;
+import JavaFX.Controller.MainScene.TripController;
 import JavaFX.Scenes.CreateCompanyScene;
 import JavaFX.Scenes.EditCompanyScene;
-import Project.Person.Agent;
 import Project.Person.Company;
 import Project.Person.Traveler;
 import Project.Person.Trip;
-import Project.Singleton.CompanySingleton;
-import Project.Singleton.TripSingleton;
+import Project.StateManager.States.AddPackageState;
+import Project.StateManager.TripContext;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 
-import javax.xml.crypto.Data;
-import javax.xml.soap.Text;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class MainSceneController
 {
     //Company section
-    @FXML
-    private ListView<String> companyList;
+    @FXML private ListView<Company> companyList;
+    @FXML private Button createCompanyButton;
+    @FXML private Button editCompanyButton;
 
     //Top Bar Navigation
     @FXML private Label closeButton;
 
     //Trip Section
     @FXML private Label tripLabel;
-    @FXML private ListView<String> tripListView;
+    @FXML private ListView<Trip> tripListView;
     @FXML private TextField searchTripField;
     @FXML private Button AddTripButton;
     @FXML private Button EditTripButton;
@@ -52,109 +46,39 @@ public class MainSceneController
     @FXML private Button travelerSaveButton;
     @FXML private Button travelerNextButton;
 
+    //Package Section
+    @FXML private Label packageLabel;
+    @FXML private ComboBox packageCombo;
+    @FXML private ListView packageList;
+    @FXML private Button packageAddButton;
+    @FXML private Button packageNextButton;
+
+
 
     private Trip selectedTrip;
     private int selectedCompanyIndex = 0;
-    private int selectedTripIndex = 0;
-    private DataController controller;
+
+    private int selectedPackageIndex = 0;
+    private TripContext stateManager;
 
     public void initalize()
     {
-        loadCompany();
-        selectedAgentLabel.setText("Welcome back, " + DataController.getSelectedAgent().getName());
-        companyList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>()
-        {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
-            {
+
+        CompanyController companyController = new CompanyController(this);
+        companyController.initalize();
+        loadPreloadedPackages();
+        stateManager = new TripContext(this);
 
 
-                tripListView.setVisible(true);
-                searchTripField.setVisible(true);
-                AddTripButton.setVisible(true);
-                tripLabel.setVisible(true);
-                EditTripButton.setVisible(true);
-
-                selectedCompanyIndex = companyList.getItems().indexOf(companyList.getSelectionModel().getSelectedItem());
-                selectedTripIndex = 0;
-                tripListView.getItems().clear();
-                System.out.println("Selected Company Index: " + selectedCompanyIndex);
-                loadTrip();
-
-                travelerLabel.setVisible(false);
-                travelerTextArea.setVisible(false);
-                travelerNextButton.setVisible(false);
-                travelerSaveButton.setVisible(false);
-                travelerSaveButton.setDisable(true);
-                travelerTextArea.setText("");
-
-            }
-        });
-        tripListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>()
-        {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
-            {
-
-                travelerLabel.setVisible(true);
-                travelerTextArea.setVisible(true);
-                travelerNextButton.setVisible(true);
-                travelerSaveButton.setVisible(true);
-
-                selectedTripIndex = 0;
-                selectedTripIndex = tripListView.getItems().indexOf(tripListView.getSelectionModel().getSelectedItem());
-                System.out.println("Selected Trip Index: " + selectedTripIndex);
-                if(selectedTripIndex != -1)
-                {
-                    DataController.setSelectedTrip(DataController.getCompanies().get(selectedCompanyIndex).getTrip(selectedTripIndex));
-                    loadTraveler();
-                }
-
-
-            }
-        });
-
-        travelerTextArea.textProperty().addListener(new ChangeListener<String>()
-        {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
-            {
-                travelerSaveButton.setDisable(false);
-
-
-            }
-        });
     }
     /*
         Load from DataController
 
      */
-
-    public void loadCompany()
+    public void loadPreloadedPackages()
     {
-        for(Company company : DataController.getCompanies())
-        {
-            companyList.getItems().add(company.getCompanyName());
-        }
+        packageCombo.getItems().addAll(DataController.getPreloadedPackages());
     }
-
-    public void loadTrip()
-    {
-
-        tripListView.getItems().addAll(DataController.getCompanies().get(selectedCompanyIndex).getTripListString());
-    }
-    public void loadTraveler()
-    {
-
-        travelerTextArea.setText("");
-        String textArea = "";
-        for(Traveler traveler : DataController.getSelectedTrip().getTravelers())
-        {
-            textArea = textArea + traveler.getName() + "\n";
-        }
-        travelerTextArea.setText(textArea);
-    }
-
 
     /*
         Button Mouse Event
@@ -170,7 +94,7 @@ public class MainSceneController
     }
     public void EditCompanyClicked(MouseEvent e)
     {
-        String selectedItem = companyList.getSelectionModel().getSelectedItem();
+        String selectedItem = companyList.getSelectionModel().getSelectedItem().getCompanyName();
         if(selectedItem == null)
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -187,7 +111,7 @@ public class MainSceneController
     }
     public void addCompanyToListView(Company company)
     {
-        companyList.getItems().add(company.getCompanyName());
+        companyList.getItems().add(company);
         DataController.getCompanies().add(company);
         for( Company i : DataController.getCompanies())
         {
@@ -196,8 +120,7 @@ public class MainSceneController
     }
     public void editCompanyListView(String input)
     {
-        int index = companyList.getItems().indexOf(companyList.getSelectionModel().getSelectedItem());
-        companyList.getItems().set(index, input);
+        companyList.getItems().get(selectedCompanyIndex).setCompanyName(input);
         for(int i = 0; i < companyList.getItems().size(); i++)
         {
             System.out.println(companyList.getItems().get(i));
@@ -205,24 +128,15 @@ public class MainSceneController
     }
     public void AddTrip(MouseEvent e)
     {
-        int index = companyList.getItems().indexOf(companyList.getSelectionModel().getSelectedItem());
-        Trip tempTrip = new Trip(DataController.getCompanies().get(index), DataController.getSelectedAgent());
-        DataController.getCompanies().get(index).addToTripsList(tempTrip);
-        tempTrip.createTrip();
-        tripListView.getItems().add(tempTrip.getUniqueID());
+        TripController.addTrip();
     }
-    public void EditTrip(MouseEvent e)
-    {
 
-
-    }
 
     // traveller
     public void travelerSaveButtonClicked(MouseEvent e)
     {
-
         Alert.AlertType alertAlertType;
-        Alert alert = new Alert(AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         if(travelerTextArea.getText().isEmpty())
         {
             alert.setTitle("Error");
@@ -236,14 +150,162 @@ public class MainSceneController
             for(String name : travelerTextArea.getText().split("\n"))
             {
 
-                Traveler traveler = new Traveler(name, selectedTrip);
+                Traveler traveler = new Traveler(name, DataController.getCompanies().get(DataController.getSelectedCompanyIndex()).getTrip(DataController.getSelectedTripIndex()));
                 tempList.add(traveler);
 
                 System.out.println(name);
             }
             DataController.getSelectedTrip().setTravelers(tempList);
             DataController.getSelectedTrip().saveTraveler();
-
+            travelerTextArea.setDisable(false);
+            travelerNextButton.setDisable(false);
         }
+    }
+    public void travelerNextButtonClicked(MouseEvent e)
+    {
+        setCompanyUI(true);
+        setTripUI(true);
+        setTravelerUI(true);
+        setPackageVisible(true);
+        stateManager.setState(new AddPackageState(), this);
+        stateManager.jumpState();
+
+
+    }
+    public void packageAddClicked()
+    {
+        Alert.AlertType alertAlertType;
+        Alert alert = new Alert(AlertType.ERROR);
+        if(packageCombo.getSelectionModel().isEmpty())
+        {
+            alert.setTitle("Selection error!");
+            alert.setHeaderText("");
+            alert.setContentText("Please select a package from the drop down!");
+            alert.showAndWait();
+        }
+        else
+        {
+            selectedPackageIndex = packageCombo.getSelectionModel().getSelectedIndex();
+            packageList.getItems().add(DataController.getPreloadedPackages().get(selectedPackageIndex));
+        }
+    }
+    public void packagedNextClicked()
+    {
+
+    }
+
+    public Label getSelectedAgentLabel()
+    {
+        return selectedAgentLabel;
+    }
+
+    public void setSelectedAgentLabel(Label selectedAgentLabel)
+    {
+        this.selectedAgentLabel = selectedAgentLabel;
+    }
+
+    public ListView<Company> getCompanyList()
+    {
+        return companyList;
+    }
+
+    public void setCompanyList(ListView<Company> companyList)
+    {
+        this.companyList = companyList;
+    }
+
+    public ListView<Trip> getTripListView()
+    {
+        return tripListView;
+    }
+
+    public void setTripListView(ListView<Trip> tripListView)
+    {
+        this.tripListView = tripListView;
+    }
+
+    public TextArea getTravelerTextArea()
+    {
+        return travelerTextArea;
+    }
+
+    public void setTravelerTextArea(String text)
+    {
+        this.travelerTextArea.setText(text);
+    }
+
+    public void setTripVisible(boolean state)
+    {
+        tripListView.setVisible(state);
+        searchTripField.setVisible(state);
+        AddTripButton.setVisible(state);
+        tripLabel.setVisible(state);
+        EditTripButton.setVisible(state);
+    }
+
+    public void setTravelerVisible(boolean state)
+    {
+        travelerLabel.setVisible(state);
+        travelerTextArea.setVisible(state);
+        travelerNextButton.setVisible(state);
+        travelerSaveButton.setVisible(state);
+        if(state == false)
+        {
+            travelerTextArea.setText("");
+        }
+        else
+        {
+            //TODO implement
+        }
+    }
+    public void setPackageVisible(boolean state)
+    {
+        packageLabel.setVisible(state);
+        packageList.setVisible(state);
+        packageCombo.setVisible(state);
+        packageAddButton.setVisible(state);
+        packageNextButton.setVisible(state);
+    }
+    public void setCompanyUI(boolean state)
+    {
+        companyList.setDisable(state);
+        createCompanyButton.setDisable(state);
+        editCompanyButton.setDisable(state);
+
+    }
+    public void setTripUI(boolean state)
+    {
+        tripLabel.setDisable(state);
+        tripListView.setDisable(state);
+        searchTripField.setDisable(state);
+        AddTripButton.setDisable(state);
+        EditTripButton.setDisable(state);
+
+    }
+    public void setTravelerUI(boolean state)
+    {
+        travelerLabel.setDisable(state);
+        travelerTextArea.setDisable(state);
+        travelerSaveButton.setDisable(state);
+        travelerNextButton.setDisable(state);
+    }
+    public void setPackageUI(boolean state)
+    {
+
+    }
+
+    public void setTravelerSaveButton(boolean state)
+    {
+        travelerSaveButton.setDisable(state);
+    }
+
+    public Button getTravelerNextButton()
+    {
+        return travelerNextButton;
+    }
+
+    public TripContext getStateManager()
+    {
+        return stateManager;
     }
 }

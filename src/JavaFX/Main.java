@@ -1,22 +1,8 @@
 package JavaFX;
 
-import Data.DataController;
 import JavaFX.Scenes.LoginScene;
-import Project.File.FileFactory.WriterFactory;
-import Project.File.FileType.FileType;
-import Project.Person.Agent;
-import Project.Person.Company;
-import Project.Singleton.CompanySingleton;
-import Reservation.TransportType;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import Reservation.Package;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 
 public class Main extends Application {
 

@@ -1,9 +1,8 @@
 package Project.File.Interface;
 
 import Project.Person.*;
-import Reservation.Package;
+import Project.Reservation.Package;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 public interface iWriter

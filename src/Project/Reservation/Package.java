@@ -1,4 +1,4 @@
-package Reservation;
+package Project.Reservation;
 
 public class Package
 {
@@ -8,6 +8,10 @@ public class Package
     private int hoursOfTravel;
     private TransportType type;
 
+    public Package()
+    {
+
+    }
     public Package(String travelFrom, String travelTo, double price, int hoursOfTravel, TransportType type)
     {
         this.travelTo = travelTo;
@@ -16,8 +20,6 @@ public class Package
         this.hoursOfTravel = hoursOfTravel;
         this.type = type;
     }
-
-
 
     public String getTravelTo()
     {
@@ -57,5 +59,10 @@ public class Package
     public void setHoursOfTravel(int hoursOfTravel)
     {
         this.hoursOfTravel = hoursOfTravel;
+    }
+    @Override
+    public String toString()
+    {
+        return travelFrom + " to " + travelTo;
     }
 }

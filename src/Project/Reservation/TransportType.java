@@ -1,4 +1,4 @@
-package Reservation;
+package Project.Reservation;
 
 public enum TransportType
 {

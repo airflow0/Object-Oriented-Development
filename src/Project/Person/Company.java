@@ -75,4 +75,10 @@ public class Company
     {
         this.filePath = filePath;
     }
+
+    @Override
+    public String toString()
+    {
+        return companyName;
+    }
 }

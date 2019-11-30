@@ -47,6 +47,7 @@ public class EditCompanyController
         }
         else
         {
+
             mainScene.editCompanyListView(companyNameInput.getText());
         }
     }

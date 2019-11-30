@@ -7,22 +7,17 @@ import Project.File.FileType.FileType;
 import Project.File.Interface.iWriter;
 import Project.Person.*;
 
-import Reservation.Package;
-import Reservation.TransportType;
+import Project.Reservation.Package;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.*;
 import javafx.scene.control.Alert;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 
 public class JSONWriter implements iWriter

@@ -5,6 +5,7 @@ import Project.Person.Agent;
 import Project.Person.Company;
 import Project.Person.Traveler;
 import Project.Person.Trip;
+import Project.Reservation.Package;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -122,8 +123,6 @@ public class JSONReader implements iReader
         };
         files = directory.listFiles(fileFilter);
 
-        System.out.println("Number of Companies in Directory" + files.length);
-
         for(File file : files)
         {
             tempList.add(new Company(file.getName()));
@@ -153,5 +152,19 @@ public class JSONReader implements iReader
             tempList.add(tempTrip);
         }
         return tempList;
+    }
+    @Override
+    public List<Package> readDefaultPackage()
+    {
+        List<Package> temp = new ArrayList<>();
+        try
+        {
+            temp = mapper.readValue(new File("resources/package.json"), new TypeReference <List<Package>>(){});
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return temp;
     }
 }

@@ -4,11 +4,9 @@ import Data.DataController;
 import Project.File.FileFactory.WriterFactory;
 import Project.File.FileType.FileType;
 import Project.Properties.Settings;
-import Reservation.Reservation;
+import Project.Reservation.Reservation;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
@@ -119,6 +117,11 @@ public class Trip
     public int getTravelerListSize()
     {
         return travelers.size();
+    }
+    @Override
+    public String toString()
+    {
+        return uniqueID;
     }
 }
 
