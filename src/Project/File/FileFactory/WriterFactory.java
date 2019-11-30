@@ -22,16 +22,4 @@ public class WriterFactory
                 throw new NotImplementedException();
         }
     }
-    public static void writeTripData(Trip trip, FileType type, PersonType pType)
-    {
-        switch(type)
-        {
-            case JSON:
-                new JSONWriter().write(trip, pType, trip.getListType(pType));
-            case XML:
-                new NotImplementedException();
-            default:
-                new NotImplementedException();
-        }
-    }
 }

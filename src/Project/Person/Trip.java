@@ -1,5 +1,6 @@
 package Project.Person;
 
+import Data.DataController;
 import Project.File.FileFactory.WriterFactory;
 import Project.File.FileType.FileType;
 import Project.Properties.Settings;
@@ -22,9 +23,8 @@ public class Trip
     private Settings set;
     private String uniqueID;
     private List<Traveler> travelers;
-    private Agent selectedAgent;
     private List<Reservation> reservations;
-
+    private Agent selectedAgent;
     private Path filePath;
     private Company company;
 
@@ -35,6 +35,7 @@ public class Trip
         travelers = new ArrayList<>();
         this.company = company;
         this.selectedAgent = selectedAgent;
+
     }
 
 
@@ -78,7 +79,7 @@ public class Trip
     {
         return filePath;
     }
-    private void setFilePath(Path filePath)
+    public void setFilePath(Path filePath)
     {
         this.filePath = filePath;
     }
@@ -95,14 +96,29 @@ public class Trip
                 return null;
         }
     }
+
     public void createTrip()
     {
         String pattern ="yyyy-MM-dd HH.mm.ss";
         SimpleDateFormat format = new SimpleDateFormat(pattern, new Locale("en", "US"));
         String date = format.format(new Date());
         uniqueID = date;
+        filePath = Paths.get(company.getFilePath() + "/" + selectedAgent.getName() + "/" + uniqueID);
         WriterFactory.createWriter(FileType.JSON).createTripDirectory(company,selectedAgent,date);
     }
-
+    public void saveTraveler()
+    {
+        System.out.println(filePath);
+        WriterFactory.createWriter(FileType.JSON).writeTraveler(filePath, PersonType.TRAVELER, travelers);
+    }
+    public void generateFilePath()
+    {
+        Path  tempPath = Paths.get(company.getFilePath() + "/" + DataController.getSelectedAgent().getName() + "/" + uniqueID);
+        filePath = tempPath;
+    }
+    public int getTravelerListSize()
+    {
+        return travelers.size();
+    }
 }
 

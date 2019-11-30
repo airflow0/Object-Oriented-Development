@@ -34,7 +34,7 @@ public class MainScene
     {
         stage = new Stage();
     }
-    public void createMainStage(Agent agent)
+    public void createMainStage()
     {
 
         try
@@ -43,8 +43,6 @@ public class MainScene
 
             Parent root = (Parent) loader.load();
             MainSceneController controller = loader.getController();
-            controller.setAgent(agent);
-            controller.setSelectedAgentLabelText("Welcome back Agent, " + agent.getName());
             controller.initalize();
 
             stage.initStyle(StageStyle.UNDECORATED);

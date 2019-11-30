@@ -1,5 +1,6 @@
 package JavaFX.Controller;
 
+import Data.DataController;
 import JavaFX.Scenes.MainScene;
 import Project.Person.Agent;
 import Project.Singleton.AgentSingleton;
@@ -17,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,18 +28,19 @@ import java.util.ResourceBundle;
 public class LoginSceneController implements Initializable
 {
     @FXML private Label loginButton;
-    @FXML
-    private ComboBox<String> agentComboBox;
-    private List<Agent> agentList;
+    @FXML private ComboBox<String> agentComboBox;
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         //LOAD ALL AGENTS :)
-        agentList = AgentSingleton.getAgentList();
-        for(Agent agent : agentList)
+        DataController.setAgents(AgentSingleton.getAgentList());
+        for(Agent agent : DataController.getAgents())
         {
             agentComboBox.getItems().add(agent.getName());
         }
+
     }
     public void loginTextClick(MouseEvent mouseEvent) throws IOException
     {
@@ -51,13 +54,14 @@ public class LoginSceneController implements Initializable
         }
         else
         {
+
             int index = agentComboBox.getSelectionModel().getSelectedIndex();
-            Agent agent = agentList.get(index);
-            System.out.println(agent.getName());
+            DataController.setSelectedAgent(DataController.getAgentByIndex(index));
+            DataController.load();
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.close();
             MainScene scene = new MainScene();
-            scene.createMainStage(agent);
+            scene.createMainStage();
         }
     }
 

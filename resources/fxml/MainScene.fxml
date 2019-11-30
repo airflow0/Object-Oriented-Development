@@ -198,7 +198,7 @@
                         </TextArea>
                         <HBox alignment="TOP_CENTER" prefHeight="225.0" prefWidth="330.0">
                            <children>
-                              <Button id="buttonTemplate" fx:id="travelerSaveButton" disable="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Save" visible="false">
+                              <Button id="buttonTemplate" fx:id="travelerSaveButton" disable="true" mnemonicParsing="false" onMouseClicked="#travelerSaveButtonClicked" prefHeight="25.0" prefWidth="125.0" text="Save" visible="false">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>

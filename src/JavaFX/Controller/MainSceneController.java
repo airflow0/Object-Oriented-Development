@@ -1,9 +1,11 @@
 package JavaFX.Controller;
 
+import Data.DataController;
 import JavaFX.Scenes.CreateCompanyScene;
 import JavaFX.Scenes.EditCompanyScene;
 import Project.Person.Agent;
 import Project.Person.Company;
+import Project.Person.Traveler;
 import Project.Person.Trip;
 import Project.Singleton.CompanySingleton;
 import Project.Singleton.TripSingleton;
@@ -13,10 +15,15 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 
+import javax.xml.crypto.Data;
 import javax.xml.soap.Text;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -46,37 +53,41 @@ public class MainSceneController
     @FXML private Button travelerNextButton;
 
 
-    //protected List<String> clients = new ArrayList<>();
-    private List<Company> companies;
-    private Agent selectedAgent;
-
+    private Trip selectedTrip;
+    private int selectedCompanyIndex = 0;
+    private int selectedTripIndex = 0;
+    private DataController controller;
 
     public void initalize()
     {
-        companies = CompanySingleton.getCompanyList();
-        TripSingleton.populateTripList(companies, selectedAgent);
-        for(Company company : companies)
-        {
-            companyList.getItems().add(company.getCompanyName());
-        }
-
+        loadCompany();
+        selectedAgentLabel.setText("Welcome back, " + DataController.getSelectedAgent().getName());
         companyList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>()
         {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
             {
+
+
                 tripListView.setVisible(true);
                 searchTripField.setVisible(true);
                 AddTripButton.setVisible(true);
                 tripLabel.setVisible(true);
                 EditTripButton.setVisible(true);
 
-                int index = companyList.getItems().indexOf(companyList.getSelectionModel().getSelectedItem());
+                selectedCompanyIndex = companyList.getItems().indexOf(companyList.getSelectionModel().getSelectedItem());
+                selectedTripIndex = 0;
                 tripListView.getItems().clear();
-                tripListView.getItems().addAll(companies.get(index).getTripList());
-                /**
-                 * Call JSON Writer???? - ADD TRIP TO SELECTED COMPANY.
-                 */
+                System.out.println("Selected Company Index: " + selectedCompanyIndex);
+                loadTrip();
+
+                travelerLabel.setVisible(false);
+                travelerTextArea.setVisible(false);
+                travelerNextButton.setVisible(false);
+                travelerSaveButton.setVisible(false);
+                travelerSaveButton.setDisable(true);
+                travelerTextArea.setText("");
+
             }
         });
         tripListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>()
@@ -84,23 +95,70 @@ public class MainSceneController
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
             {
+
                 travelerLabel.setVisible(true);
                 travelerTextArea.setVisible(true);
                 travelerNextButton.setVisible(true);
                 travelerSaveButton.setVisible(true);
 
+                selectedTripIndex = 0;
+                selectedTripIndex = tripListView.getItems().indexOf(tripListView.getSelectionModel().getSelectedItem());
+                System.out.println("Selected Trip Index: " + selectedTripIndex);
+                if(selectedTripIndex != -1)
+                {
+                    DataController.setSelectedTrip(DataController.getCompanies().get(selectedCompanyIndex).getTrip(selectedTripIndex));
+                    loadTraveler();
+                }
+
+
             }
         });
+
         travelerTextArea.textProperty().addListener(new ChangeListener<String>()
         {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
             {
                 travelerSaveButton.setDisable(false);
+
+
             }
         });
     }
+    /*
+        Load from DataController
 
+     */
+
+    public void loadCompany()
+    {
+        for(Company company : DataController.getCompanies())
+        {
+            companyList.getItems().add(company.getCompanyName());
+        }
+    }
+
+    public void loadTrip()
+    {
+
+        tripListView.getItems().addAll(DataController.getCompanies().get(selectedCompanyIndex).getTripListString());
+    }
+    public void loadTraveler()
+    {
+
+        travelerTextArea.setText("");
+        String textArea = "";
+        for(Traveler traveler : DataController.getSelectedTrip().getTravelers())
+        {
+            textArea = textArea + traveler.getName() + "\n";
+        }
+        travelerTextArea.setText(textArea);
+    }
+
+
+    /*
+        Button Mouse Event
+     */
     public void CloseButtonClicked(MouseEvent e)
     {
         Platform.exit();
@@ -130,8 +188,8 @@ public class MainSceneController
     public void addCompanyToListView(Company company)
     {
         companyList.getItems().add(company.getCompanyName());
-        companies.add(company);
-        for( Company i : companies)
+        DataController.getCompanies().add(company);
+        for( Company i : DataController.getCompanies())
         {
             System.out.println(i.getCompanyName());
         }
@@ -148,8 +206,8 @@ public class MainSceneController
     public void AddTrip(MouseEvent e)
     {
         int index = companyList.getItems().indexOf(companyList.getSelectionModel().getSelectedItem());
-        Trip tempTrip = new Trip(companies.get(index), selectedAgent);
-        companies.get(index).addToTripsList(tempTrip);
+        Trip tempTrip = new Trip(DataController.getCompanies().get(index), DataController.getSelectedAgent());
+        DataController.getCompanies().get(index).addToTripsList(tempTrip);
         tempTrip.createTrip();
         tripListView.getItems().add(tempTrip.getUniqueID());
     }
@@ -159,22 +217,33 @@ public class MainSceneController
 
     }
 
-    public void setAgent(Agent agent)
+    // traveller
+    public void travelerSaveButtonClicked(MouseEvent e)
     {
-        selectedAgent = agent;
-    }
-    public Agent getAgent()
-    {
-        return selectedAgent;
-    }
 
-    public Label getSelectedAgentLabel()
-    {
-        return selectedAgentLabel;
-    }
+        Alert.AlertType alertAlertType;
+        Alert alert = new Alert(AlertType.ERROR);
+        if(travelerTextArea.getText().isEmpty())
+        {
+            alert.setTitle("Error");
+            alert.setHeaderText("Error in creating Travelers");
+            alert.setContentText("There must be at least one name in a each line!");
+            alert.showAndWait();
+        }
+        else
+        {
+            List<Traveler> tempList = new ArrayList<>();
+            for(String name : travelerTextArea.getText().split("\n"))
+            {
 
-    public void setSelectedAgentLabelText(String text)
-    {
-        this.selectedAgentLabel.setText(text);
+                Traveler traveler = new Traveler(name, selectedTrip);
+                tempList.add(traveler);
+
+                System.out.println(name);
+            }
+            DataController.getSelectedTrip().setTravelers(tempList);
+            DataController.getSelectedTrip().saveTraveler();
+
+        }
     }
 }

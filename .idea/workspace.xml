@@ -1,17 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Changed sexybottom to initalize">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Some massive changes to UI">
+      <change afterPath="$PROJECT_DIR$/src/Data/DataController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Controller/LoginSceneController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Controller/LoginSceneController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Scenes/MainScene$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Scenes/MainScene$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Scenes/MainScene$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Scenes/MainScene$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Scenes/MainScene.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Scenes/MainScene.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/css/layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/css/layout.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/FileFactory/WriterFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/FileFactory/WriterFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Interface/iReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Interface/iReader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Interface/iWriter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Interface/iWriter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Reader/JSONReader$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Reader/JSONReader$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Reader/JSONReader$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Reader/JSONReader$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Reader/JSONReader$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Reader/JSONReader$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Reader/JSONReader$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Reader/JSONReader$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Reader/JSONReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Reader/JSONReader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Writer/JSONWriter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Writer/JSONWriter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/Person/Company.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/Person/Company.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/Person/Traveler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/Person/Traveler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/Person/Trip$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/Person/Trip$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/Person/Trip.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/Person/Trip.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/Singleton/TravelerSingleton.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/Singleton/TravelerSingleton.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/fxml/MainScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/fxml/MainScene.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/fxml/MainScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fxml/MainScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JavaFX/Controller/LoginSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaFX/Controller/LoginSceneController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JavaFX/Controller/MainSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaFX/Controller/MainSceneController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JavaFX/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaFX/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JavaFX/Scenes/MainScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaFX/Scenes/MainScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JavaFX/css/layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaFX/css/layout.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/File/FileFactory/WriterFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/File/FileFactory/WriterFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/File/Interface/iReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/File/Interface/iReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/File/Interface/iWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/File/Interface/iWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/File/Reader/JSONReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/File/Reader/JSONReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/File/Writer/JSONWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/File/Writer/JSONWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/Person/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Person/Company.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/Person/Traveler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Person/Traveler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/Person/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Person/Trip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/Singleton/TravelerSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Singleton/TravelerSingleton.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,8 +94,8 @@
       <list>
         <option value="CSS File" />
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -234,7 +260,8 @@
       <workItem from="1574807619211" duration="12692000" />
       <workItem from="1574903344397" duration="7171000" />
       <workItem from="1574911004926" duration="11427000" />
-      <workItem from="1574927890597" duration="6779000" />
+      <workItem from="1574927890597" duration="8842000" />
+      <workItem from="1574982580188" duration="27915000" />
     </task>
     <task id="LOCAL-00001" summary="Easy Clap">
       <created>1574913752842</created>
@@ -257,7 +284,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574913872421</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Some massive changes to UI">
+      <created>1574934694191</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1574934694191</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,6 +315,7 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <MESSAGE value="Easy Clap" />
     <MESSAGE value="Changed sexybottom to initalize" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed sexybottom to initalize" />
+    <MESSAGE value="Some massive changes to UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some massive changes to UI" />
   </component>
 </project>

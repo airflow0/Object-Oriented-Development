@@ -13,6 +13,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +49,7 @@ public class JSONReader implements iReader
         }
         return tempList;
     }
-
+    /*
     @Override
     public  List<Traveler> readTravelerFromFile(Trip trip)
     {
@@ -70,7 +72,40 @@ public class JSONReader implements iReader
             e.printStackTrace();
         }
         return tempList;
+    }*/
+    public  List<Traveler> readTravelerFromFile(Path filePath)
+    {
+        List<Traveler> tempList = new ArrayList<>();
+        Path tempPath = Paths.get(filePath +"/traveler.json");
+        try
+        {
+            File file = new File(tempPath.toString());
+            if(file.length() == 0)
+            {
+                return tempList;
+            }
+            else
+            {
+                tempList = mapper.readValue(file, new TypeReference<List<Traveler>>(){});
+                return tempList;
+            }
+
+        }
+        catch (JsonParseException e)
+        {
+            e.printStackTrace();
+        }
+        catch (JsonMappingException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return tempList;
     }
+
     @Override
     public  List<Company> readCompanyFromDirectory()
     {

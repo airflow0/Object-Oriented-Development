@@ -45,7 +45,11 @@ public class Company
     {
         trips.add(trip);
     }
-    public List<String> getTripList()
+    public Trip getTrip(int index)
+    {
+        return trips.get(index);
+    }
+    public List<String> getTripListString()
     {
         List<String> tempList = new ArrayList<>();
         for(Trip i : trips)
@@ -53,6 +57,10 @@ public class Company
             tempList.add(i.getUniqueID());
         }
         return tempList;
+    }
+    public List<Trip> getTripList()
+    {
+        return trips;
     }
     public void replaceTripList(List<Trip> temp)
     {

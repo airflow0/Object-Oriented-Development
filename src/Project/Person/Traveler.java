@@ -1,34 +1,35 @@
 package Project.Person;
 
 
+import Project.File.FileFactory.WriterFactory;
+import Project.File.FileType.FileType;
+import Project.File.Writer.JSONWriter;
+
+import java.util.List;
+
 public class Traveler
 {
 
-    private String firstName;
-    private String lastName;
+    private String name;
+    private Trip trip;
+    public Traveler()
+    {
 
-    public Traveler(String firstName, String lastName)
-    {
-        this.firstName = firstName;
-        this.lastName = lastName;
     }
-
-    public String getFirstName()
+    public Traveler(String name, Trip trip)
     {
-        return firstName;
-    }
-    public void setFirstName(String firstName)
-    {
-        this.firstName = firstName;
-    }
-    public String getLastName()
-    {
-        return lastName;
-    }
-    public void setLastName(String lastName)
-    {
-        this.lastName = lastName;
+        this.name = name;
+        this.trip = trip;
     }
 
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
 
 }

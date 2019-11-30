@@ -5,10 +5,7 @@ package Project.File.Writer;
 import Project.File.FileFactory.ReaderFactory;
 import Project.File.FileType.FileType;
 import Project.File.Interface.iWriter;
-import Project.Person.Agent;
-import Project.Person.Company;
-import Project.Person.PersonType;
-import Project.Person.Trip;
+import Project.Person.*;
 
 import Reservation.Package;
 import Reservation.TransportType;
@@ -18,6 +15,7 @@ import javafx.scene.control.Alert;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -35,11 +33,11 @@ public class JSONWriter implements iWriter
     {
         mapper = new ObjectMapper();
     }
-    public void write(Trip trip, PersonType pType, List point)
+    public void write(Path path, PersonType pType, List point)
     {
         try
         {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(trip.getFilePath()+ "/" + pType.toString().toLowerCase() +".json"), point);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(path + "/" + pType.toString().toLowerCase() +".json"), point);
         }
         catch (JsonGenerationException e)
         {
@@ -54,7 +52,25 @@ public class JSONWriter implements iWriter
             e.printStackTrace();
         }
     }
-
+    public void writeTraveler(Path path, PersonType pType, List<Traveler> travelers)
+    {
+        try
+        {
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(path + "/" + pType.toString().toLowerCase() +".json"), travelers);
+        }
+        catch (JsonGenerationException e)
+        {
+            e.printStackTrace();
+        }
+        catch (JsonMappingException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
     public void createCompanyDirectory(Path filePath)
     {
@@ -102,6 +118,10 @@ public class JSONWriter implements iWriter
 
         //resources/Facebook /
         Path filePath = Paths.get(company.getFilePath() + "/"+ selectedAgent.getName() +  "/" + uniqueID);
+        Path travelerFile = filePath.resolve("traveler.json");
+        Path reservation = filePath.resolve("reservation.json");
+        Path payment = filePath.resolve("payment.json");
+        Path billing = filePath.resolve("billing.json");
         if(Files.exists(filePath))
         {
 
@@ -116,6 +136,10 @@ public class JSONWriter implements iWriter
             try
             {
                 Files.createDirectories(filePath);
+                Files.createFile(travelerFile);
+                Files.createFile(reservation);
+                Files.createFile(payment);
+                Files.createFile(billing);
                 alert.setTitle("Information");
                 alert.setHeaderText(null);
                 alert.setContentText("Trip Created!");

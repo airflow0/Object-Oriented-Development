@@ -1,16 +1,15 @@
 package Project.File.Interface;
 
-import Project.Person.Agent;
-import Project.Person.Company;
-import Project.Person.PersonType;
-import Project.Person.Trip;
+import Project.Person.*;
 import Reservation.Package;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 public interface iWriter
 {
-    void write(Trip trip, PersonType pType, List point);
+    void write(Path path, PersonType pType, List point);
+    void writeTraveler(Path path, PersonType pType, List<Traveler> point);
     void createCompanyDirectory(Path filePath);
     void createTripDirectory(Company company, Agent selectedAgent, String uniqueID);
     void createPackage(List<Package> pack);

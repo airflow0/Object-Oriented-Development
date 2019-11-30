@@ -1,5 +1,6 @@
 package JavaFX;
 
+import Data.DataController;
 import JavaFX.Scenes.LoginScene;
 import Project.File.FileFactory.WriterFactory;
 import Project.File.FileType.FileType;
@@ -46,7 +47,7 @@ public class Main extends Application {
         agents.add(agent3);
         agents.add(agent4);
         agents.add(agent5);
-        WriterFactory.createWriter(FileType.JSON).createAgentList(agents);*/
+        WriterFactory.createWriter(FileType.JSON).createAgentList(agents);*/;
         LoginScene loginScene = new LoginScene(primaryStage);
         loginScene.createLoginScene();
 
