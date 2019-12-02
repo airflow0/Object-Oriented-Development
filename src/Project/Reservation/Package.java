@@ -1,9 +1,10 @@
 package Project.Reservation;
-
+import Project.Reservation.TransportType;
+import Project.Reservation.Place;
 public class Package
 {
-    private String travelTo;
-    private String travelFrom;
+    private Place travelTo;
+    private Place travelFrom;
     private double price;
     private int hoursOfTravel;
     private TransportType type;
@@ -12,7 +13,8 @@ public class Package
     {
 
     }
-    public Package(String travelFrom, String travelTo, double price, int hoursOfTravel, TransportType type)
+
+    public Package(Place travelFrom, Place travelTo, double price, int hoursOfTravel, TransportType type)
     {
         this.travelTo = travelTo;
         this.travelFrom = travelFrom;
@@ -21,22 +23,22 @@ public class Package
         this.type = type;
     }
 
-    public String getTravelTo()
+    public Place getTravelTo()
     {
         return travelTo;
     }
 
-    public void setTravelTo(String travelTo)
+    public void setTravelTo(Place travelTo)
     {
         this.travelTo = travelTo;
     }
 
-    public String getTravelFrom()
+    public Place getTravelFrom()
     {
         return travelFrom;
     }
 
-    public void setTravelFrom(String travelFrom)
+    public void setTravelFrom(Place travelFrom)
     {
         this.travelFrom = travelFrom;
     }
@@ -63,6 +65,6 @@ public class Package
     @Override
     public String toString()
     {
-        return travelFrom + " to " + travelTo;
+        return travelFrom.getPlace() + " to " + travelTo.getPlace();
     }
 }

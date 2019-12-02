@@ -1,10 +1,11 @@
 package Project.StateManager.States;
 
+import Data.DataController;
 import JavaFX.Controller.MainSceneController;
 import Project.StateManager.TripContext;
 import Project.StateManager.iTripWriter;
 
-public class AddReservationState implements iTripWriter
+public class AddPaymentChoseState implements iTripWriter
 {
     private MainSceneController mainScene;
     @Override
@@ -17,6 +18,7 @@ public class AddReservationState implements iTripWriter
     @Override
     public void load()
     {
-        mainScene.setPackageUI(true);
+        mainScene.getChoosePersonCombo().getItems().setAll(DataController.getSelectedCompany().getPeople());
+        mainScene.setReservationUI(true);
     }
 }

@@ -2,15 +2,10 @@ package Project.StateManager.States;
 
 import Data.DataController;
 import JavaFX.Controller.MainSceneController;
-import Project.Person.Traveler;
+import Project.Person.Person;
 import Project.StateManager.TripContext;
 import Project.StateManager.iTripWriter;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.scene.control.Alert;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class AddTravelerState implements iTripWriter
 {
@@ -27,25 +22,12 @@ public class AddTravelerState implements iTripWriter
     @Override
     public void load()
     {
-        mainScene.getTravelerTextArea().textProperty().addListener(new ChangeListener<String>()
-        {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
-            {
-                mainScene.setTravelerSaveButton(false);
-                System.out.println("Test");
-            }
-        });
-        mainScene.setTravelerTextArea("");
-        String textArea = "";
+
+
         System.out.println("[LOAD TRAVLER METHOD]");
         System.out.println("Company Index: " + DataController.getSelectedCompanyIndex());
         System.out.println("Trip index: " + DataController.getSelectedTripIndex());
-        for(Traveler traveler : DataController.getCompanies().get(DataController.getSelectedCompanyIndex()).getTripList().get(DataController.getSelectedTripIndex()).getTravelers())
-        {
-            textArea = textArea + traveler.getName() + "\n";
-
-        }
-        mainScene.setTravelerTextArea(textArea);
+        mainScene.getTravelerComboBox().getItems().setAll(DataController.getCompanies().get(DataController.getSelectedCompanyIndex()).getPeople());
+        mainScene.getTravelerListView().getItems().setAll(DataController.getSelectedTrip().getTravelers());
     }
 }

@@ -1,29 +1,31 @@
 package Data;
 
+import Project.File.FileFactory.WriterFactory;
+import Project.File.FileType.FileType;
+import Project.File.Writer.JSONWriter;
 import Project.Person.Agent;
 import Project.Person.Company;
-import Project.Person.Traveler;
+import Project.Person.Person;
 import Project.Person.Trip;
-import Project.Singleton.CompanySingleton;
-import Project.Singleton.PackageSingleton;
-import Project.Singleton.TravelerSingleton;
-import Project.Singleton.TripSingleton;
+import Project.Reservation.Place;
+import Project.Singleton.*;
 import Project.Reservation.Package;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DataController
 {
     private static List<Company> companies;
-    private static List<Trip> trips;
-    private static List<Traveler> travelers;
     private static List<Agent> agents;
-    private static List<Package> preloadedPackages;
-
+    private static List<Package> packages;
+    private static List<Place> placeList;
+    private static Company selectedCompany;
     private static Agent selectedAgent;
     private static Trip selectedTrip;
     private static int selectedCompanyIndex;
     private static int  selectedTripIndex;
+
 
     public DataController()
     {
@@ -34,32 +36,37 @@ public class DataController
         companies = CompanySingleton.getCompanyList();
         TripSingleton.populateTripList(companies, selectedAgent);
         generateFilePath();
-        TravelerSingleton.populate(companies);
+        PersonSingleton.populatePersonList(companies);
         System.out.println("[LOADED COMPANIES, TRIPS, TRAVELERS]");
         for(Company company : companies)
         {
             System.out.println("Companies: ");
             System.out.println(company.getCompanyName());
+
             for(Trip trip : company.getTripList())
             {
                 System.out.println("\tTrips: ");
                 System.out.println("\t\t" + trip.getUniqueID());
                 System.out.println("\tTravelers: ");
-                for(Traveler traveler : trip.getTravelers())
+                for(Person person : trip.getTravelers())
                 {
 
-                    System.out.println("\t\t" + traveler.getName());
+                    System.out.println("\t\t" + person.getName());
                 }
             }
         }
+        TravelerSingleton.populateTraveler(companies);
+        packages = PackageSingleton.getPackageList(companies);
+        placeList = PlaceSingleton.getPlaceList();
 
-        preloadedPackages = PackageSingleton.getPackageList();
-        System.out.println("[LOADED: PREDESIGNED PACKAGES]");
-        for(Package pack : preloadedPackages)
-        {
-            System.out.println("Travel From " + pack.getTravelFrom() + " Travel To: " + pack.getTravelTo());
-        }
-
+    }
+    public static void savePersonList()
+    {
+        WriterFactory.createWriter(FileType.JSON).writePerson(companies.get(selectedCompanyIndex).getFilePath(), companies.get(selectedCompanyIndex).getPeople());
+    }
+    public static void saveTraveler()
+    {
+        WriterFactory.createWriter(FileType.JSON).writeTraveler(selectedTrip.getFilePath(), selectedTrip.getTravelers());
     }
     public static List<Company> getCompanies()
     {
@@ -69,26 +76,6 @@ public class DataController
     public static void setCompanies(List<Company> companies)
     {
         DataController.companies = companies;
-    }
-
-    public static List<Trip> getTrips()
-    {
-        return trips;
-    }
-
-    public static void setTrips(List<Trip> trips)
-    {
-        DataController.trips = trips;
-    }
-
-    public static List<Traveler> getTravelers()
-    {
-        return travelers;
-    }
-
-    public static void setTravelers(List<Traveler> travelers)
-    {
-        DataController.travelers = travelers;
     }
 
     public static List<Agent> getAgents()
@@ -124,27 +111,35 @@ public class DataController
     {
         DataController.selectedTrip = selectedTrip;
     }
-    private static void generateFilePath()
+
+    public static List<Package> getPackages()
     {
-        for(Company company : companies)
-        {
-            for(Trip trip : company.getTripList())
-            {
-                trip.generateFilePath();
-            }
-        }
+        return packages;
     }
 
-    public static List<Package> getPreloadedPackages()
+    public static List<Place> getPlaceList()
     {
-        return preloadedPackages;
+        return placeList;
     }
 
-    public static void setPreloadedPackages(List<Package> preloadedPackages)
+    public static void setPlaceList(List<Place> placeList)
     {
-        DataController.preloadedPackages = preloadedPackages;
+        DataController.placeList = placeList;
     }
 
+    public static void setPackages(List<Package> packages)
+    {
+        DataController.packages = packages;
+    }
+
+    public static void setSelectedCompany()
+    {
+        selectedCompany = companies.get(selectedCompanyIndex);
+    }
+    public static Company getSelectedCompany()
+    {
+        return selectedCompany;
+    }
     public static int getSelectedCompanyIndex()
     {
         return selectedCompanyIndex;
@@ -163,5 +158,15 @@ public class DataController
     public static void setSelectedTripIndex(int selectedTripIndex)
     {
         DataController.selectedTripIndex = selectedTripIndex;
+    }
+    private static void generateFilePath()
+    {
+        for(Company company : companies)
+        {
+            for(Trip trip : company.getTripList())
+            {
+                trip.generateFilePath();
+            }
+        }
     }
 }

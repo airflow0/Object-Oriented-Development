@@ -1,8 +1,17 @@
 package JavaFX;
 
 import JavaFX.Scenes.LoginScene;
+import Project.File.FileFactory.WriterFactory;
+import Project.File.FileType.FileType;
+import Project.Reservation.Place;
 import javafx.application.Application;
 import javafx.stage.Stage;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends Application {
 
@@ -34,6 +43,26 @@ public class Main extends Application {
         agents.add(agent4);
         agents.add(agent5);
         WriterFactory.createWriter(FileType.JSON).createAgentList(agents);*/;
+        /*
+        BufferedReader reader;
+        List<Place> placeList = new ArrayList<>();
+        try
+        {
+            reader = new BufferedReader(new FileReader("resources/placelist.txt"));
+            String line = reader.readLine();
+            while(line != null)
+            {
+                placeList.add(new Place(line));
+                System.out.println(line);
+                line = reader.readLine();
+            }
+        } catch (IOException ex)
+        {
+
+        }
+        WriterFactory.createWriter(FileType.JSON).createPlaceList(placeList);
+
+         */
         LoginScene loginScene = new LoginScene(primaryStage);
         loginScene.createLoginScene();
 

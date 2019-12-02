@@ -4,7 +4,7 @@ import Data.DataController;
 import Project.File.FileFactory.WriterFactory;
 import Project.File.FileType.FileType;
 import Project.Properties.Settings;
-import Project.Reservation.Reservation;
+import Project.Reservation.Package;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.nio.file.Path;
@@ -18,21 +18,20 @@ import java.util.Locale;
 public class Trip
 {
 
-    private Settings set;
     private String uniqueID;
-    private List<Traveler> travelers;
-    private List<Reservation> reservations;
+    private List<Person> travelers;
+    private List<Package> reservations;
     private Agent selectedAgent;
     private Path filePath;
     private Company company;
 
     public Trip(Company company, Agent selectedAgent)
     {
-
-        set = new Settings();
-        travelers = new ArrayList<>();
         this.company = company;
         this.selectedAgent = selectedAgent;
+        travelers = new ArrayList<>();
+        reservations = new ArrayList<>();
+
 
     }
 
@@ -46,19 +45,19 @@ public class Trip
         this.uniqueID = uniqueID;
     }
 
-    public List<Traveler> getTravelers()
+    public List<Person> getTravelers()
     {
         return travelers;
     }
-    public void setTravelers(List<Traveler> travelers)
+    public void setTravelers(List<Person> travelers)
     {
         this.travelers = travelers;
     }
-    public void addTraveler(Traveler traveler)
+    public void addTraveler(Person person)
     {
-        travelers.add(traveler);
+        travelers.add(person);
     }
-    public void addTravelers(List<Traveler> tempList)
+    public void addTravelers(List<Person> tempList)
     {
         travelers.addAll(tempList);
 
@@ -73,6 +72,24 @@ public class Trip
         return selectedAgent;
     }
 
+    public void addToReservation(Package pack)
+    {
+        reservations.add(pack);
+    }
+    public Package getReservationByIndex(int index)
+    {
+        return reservations.get(index);
+    }
+    public List<Package> getReservations()
+    {
+        return reservations;
+    }
+
+    public void setReservations(List<Package> reservations)
+    {
+        this.reservations = reservations;
+    }
+
     public Path getFilePath()
     {
         return filePath;
@@ -80,19 +97,6 @@ public class Trip
     public void setFilePath(Path filePath)
     {
         this.filePath = filePath;
-    }
-
-    public List getListType(PersonType p)
-    {
-        switch(p)
-        {
-            case AGENT:
-                throw new NotImplementedException();
-            case TRAVELER:
-                return travelers;
-            default:
-                return null;
-        }
     }
 
     public void createTrip()
@@ -104,10 +108,10 @@ public class Trip
         filePath = Paths.get(company.getFilePath() + "/" + selectedAgent.getName() + "/" + uniqueID);
         WriterFactory.createWriter(FileType.JSON).createTripDirectory(company,selectedAgent,date);
     }
-    public void saveTraveler()
+
+    public void saveReservations()
     {
-        System.out.println(filePath);
-        WriterFactory.createWriter(FileType.JSON).writeTraveler(filePath, PersonType.TRAVELER, travelers);
+        WriterFactory.createWriter(FileType.JSON).writeReservation(filePath, reservations);
     }
     public void generateFilePath()
     {

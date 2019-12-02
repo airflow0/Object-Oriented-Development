@@ -40,15 +40,10 @@ public class TripController
                     //travelerController.initialize();
                     //initalize Traveler State
                     mainScene.getStateManager().jumpState();
+                    mainScene.setCompanyUI(true);
+                    mainScene.setTripUI(true);
                 }
             }
         });
-    }
-    public static void addTrip()
-    {
-        Trip tempTrip = new Trip(DataController.getCompanies().get(DataController.getSelectedCompanyIndex()), DataController.getSelectedAgent());
-        DataController.getCompanies().get(DataController.getSelectedCompanyIndex()).addToTripsList(tempTrip);
-        tempTrip.createTrip();
-        mainScene.getTripListView().getItems().add(tempTrip);
     }
 }

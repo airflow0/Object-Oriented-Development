@@ -1,5 +1,6 @@
 package Project.Person;
 
+import Data.DataController;
 import Project.File.FileFactory.WriterFactory;
 import Project.File.FileType.FileType;
 import javafx.scene.control.Alert;
@@ -14,6 +15,7 @@ import java.util.List;
 public class Company
 {
     private List<Trip> trips;
+    private List<Person> people;
     private Path filePath;
     private String companyName;
 
@@ -24,6 +26,7 @@ public class Company
         this.companyName = companyName;
         trips = new ArrayList<>();
         filePath = Paths.get("resources/Company/" + companyName);
+        people = new ArrayList<>();
 
     }
     public String getCompanyName()
@@ -39,6 +42,8 @@ public class Company
     public void createCompany()
     {
         WriterFactory.createWriter(FileType.JSON).createCompanyDirectory(filePath);
+        List<Person> temp = new ArrayList<>();
+        WriterFactory.createWriter(FileType.JSON).writePerson(filePath, temp);
     }
 
     public void addToTripsList(Trip trip)
@@ -74,6 +79,20 @@ public class Company
     public void setFilePath(Path filePath)
     {
         this.filePath = filePath;
+    }
+
+    public void addPerson(Person person)
+    {
+        people.add(person);
+    }
+    public List<Person> getPeople()
+    {
+        return people;
+    }
+
+    public void setPeople(List<Person> people)
+    {
+        this.people = people;
     }
 
     @Override

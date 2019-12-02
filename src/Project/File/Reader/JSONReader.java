@@ -3,17 +3,20 @@ package Project.File.Reader;
 import Project.File.Interface.iReader;
 import Project.Person.Agent;
 import Project.Person.Company;
-import Project.Person.Traveler;
+import Project.Person.Person;
 import Project.Person.Trip;
 import Project.Reservation.Package;
+import Project.Reservation.Place;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
+import java.nio.charset.MalformedInputException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -74,9 +77,9 @@ public class JSONReader implements iReader
         }
         return tempList;
     }*/
-    public  List<Traveler> readTravelerFromFile(Path filePath)
+    public  List<Person> readTravelerFromFile(Path filePath)
     {
-        List<Traveler> tempList = new ArrayList<>();
+        List<Person> tempList = new ArrayList<>();
         Path tempPath = Paths.get(filePath +"/traveler.json");
         try
         {
@@ -87,7 +90,7 @@ public class JSONReader implements iReader
             }
             else
             {
-                tempList = mapper.readValue(file, new TypeReference<List<Traveler>>(){});
+                tempList = mapper.readValue(file, new TypeReference<List<Person>>(){});
                 return tempList;
             }
 
@@ -110,7 +113,7 @@ public class JSONReader implements iReader
     @Override
     public  List<Company> readCompanyFromDirectory()
     {
-        List<Company>        tempList = new ArrayList<>();
+        List<Company> tempList = new ArrayList<>();
         //Read file directory Test
         File directory = new File("resources/Company");
         File[] files = directory.listFiles();
@@ -153,13 +156,64 @@ public class JSONReader implements iReader
         }
         return tempList;
     }
-    @Override
-    public List<Package> readDefaultPackage()
+    public List<Package> readReservationFromFile(Path filePath)
     {
-        List<Package> temp = new ArrayList<>();
+        List<Package> tempList = new ArrayList<>();
+        Path tempPath = Paths.get(filePath +"/reservation.json");
         try
         {
-            temp = mapper.readValue(new File("resources/package.json"), new TypeReference <List<Package>>(){});
+            File file = new File(tempPath.toString());
+            if(file.length() == 0)
+            {
+                return tempList;
+            }
+            else
+            {
+                tempList = mapper.readValue(file, new TypeReference<List<Package>>(){});
+                return tempList;
+            }
+
+        }
+        catch (JsonParseException e)
+        {
+            e.printStackTrace();
+        }
+        catch (JsonMappingException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return tempList;
+    }
+
+    @Override
+    public List<Place> readPlaceList()
+    {
+        List<Place> temp = new ArrayList<>();
+        try
+        {
+            temp = mapper.readValue(new File("resources/place.json"), new TypeReference <List<Place>>(){});
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return temp;
+    }
+    @Override
+    public List<Person> readPersonList(Path filePath)
+    {
+        List<Person> temp = new ArrayList<>();
+        try
+        {
+            temp = mapper.readValue(new File(filePath + "/people.json"), new TypeReference <List<Person>>(){});
+        }
+        catch(MismatchedInputException ex)
+        {
+
         }
         catch (Exception e)
         {

@@ -8,6 +8,7 @@ import Project.File.Interface.iWriter;
 import Project.Person.*;
 
 import Project.Reservation.Package;
+import Project.Reservation.Place;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.*;
 import javafx.scene.control.Alert;
@@ -47,11 +48,11 @@ public class JSONWriter implements iWriter
             e.printStackTrace();
         }
     }
-    public void writeTraveler(Path path, PersonType pType, List<Traveler> travelers)
+    public void writeTraveler(Path path, List<Person> people)
     {
         try
         {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(path + "/" + pType.toString().toLowerCase() +".json"), travelers);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(path + "/"  + "traveler.json"), people);
         }
         catch (JsonGenerationException e)
         {
@@ -66,7 +67,26 @@ public class JSONWriter implements iWriter
             e.printStackTrace();
         }
     }
-
+    @Override
+    public void writeReservation(Path path, List<Package> packages)
+    {
+        try
+        {
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(path + "/reservation.json"), packages);
+        }
+        catch (JsonGenerationException e)
+        {
+            e.printStackTrace();
+        }
+        catch (JsonMappingException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
     public void createCompanyDirectory(Path filePath)
     {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -90,6 +110,7 @@ public class JSONWriter implements iWriter
                     Path agentPath = Paths.get(filePath + "/" + agent.getName());
                     Files.createDirectories(agentPath);
                 }
+                Files.createFile(filePath.resolve("people.json"));
                 alert.setTitle("Information");
                 alert.setHeaderText(null);
                 alert.setContentText("Company Created!");
@@ -152,45 +173,25 @@ public class JSONWriter implements iWriter
             }
         }
     }
+    @Override
+    public void writePerson(Path filePath, List<Person> personList)
+    {
+        try
+        {
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath + "/people.json"), personList);
+        }
+        catch (JsonGenerationException e)
+        {
+            e.printStackTrace();
+        }
+        catch (JsonMappingException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
 
-    @Override
-    public void createPackage(List<Package> pack)
-    {
-        try
-        {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("resources/package.json"), pack);
-        }
-        catch (JsonGenerationException e)
-        {
-            e.printStackTrace();
-        }
-        catch (JsonMappingException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
-    @Override
-    public void createAgentList(List<Agent> agents)
-    {
-        try
-        {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("resources/agent.json"), agents);
-        }
-        catch (JsonGenerationException e)
-        {
-            e.printStackTrace();
-        }
-        catch (JsonMappingException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
     }
 }

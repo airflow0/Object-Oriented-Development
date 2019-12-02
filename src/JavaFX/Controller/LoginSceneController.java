@@ -57,7 +57,9 @@ public class LoginSceneController implements Initializable
 
             int index = agentComboBox.getSelectionModel().getSelectedIndex();
             DataController.setSelectedAgent(DataController.getAgentByIndex(index));
+            System.out.println("[AGENT SELECTED]: " + DataController.getSelectedAgent().getName());
             DataController.load();
+
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.close();
             MainScene scene = new MainScene();

@@ -27,11 +27,10 @@ public class CompanyController
                 mainScene.setTripVisible(true);
 
                 DataController.setSelectedCompanyIndex(mainScene.getCompanyList().getItems().indexOf(mainScene.getCompanyList().getSelectionModel().getSelectedItem()));
-
+                DataController.setSelectedCompany();
                 System.out.println("Selected Company Index: " + DataController.getSelectedCompanyIndex());
                 TripController tripController = new TripController(mainScene);
                 tripController.initialize();
-                mainScene.setTravelerVisible(false);
             }
         });
 

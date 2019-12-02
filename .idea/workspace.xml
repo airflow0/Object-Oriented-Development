@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Massive Overhaul">
-      <change afterPath="$PROJECT_DIR$/src/JavaFX/Controller/MainScene/CompanyController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/JavaFX/Controller/MainScene/TripController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Project/Reservation/Reservation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Project/Singleton/PackageSingleton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Project/StateManager/States/AddPackageState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Project/StateManager/States/AddPaymentState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Project/StateManager/States/AddReservationState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Project/StateManager/States/AddTravelerState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Project/StateManager/TripContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Project/StateManager/iTripWriter.java" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Massive Overhaul 2">
+      <change afterPath="$PROJECT_DIR$/resources/place.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Project/Reservation/Place.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Project/Singleton/PersonSingleton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Project/Singleton/PlaceSingleton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Project/StateManager/States/AddPaymentChoseState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Project/StateManager/States/AddPaymentSelectState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Controller/EditCompanyController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Controller/EditCompanyController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Controller/CreateCompanyController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Controller/CreateCompanyController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Controller/LoginSceneController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Controller/LoginSceneController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/css/layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/JavaFX/css/layout.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Interface/iReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Interface/iReader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Interface/iWriter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Interface/iWriter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Reader/JSONReader$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Reader/JSONReader$1.class" afterDir="false" />
@@ -25,32 +21,34 @@
       <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Reader/JSONReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Reader/JSONReader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Writer/JSONWriter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/File/Writer/JSONWriter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/Person/Company.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/Person/Company.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/Person/Trip$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/Person/Trip$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/Person/Traveler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/Person/Trip$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/Person/Trip.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/Person/Trip.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/Singleton/ReservationSingleton.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Project/Singleton/TravelerSingleton.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/Project/Singleton/TravelerSingleton.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Reservation/Package.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Reservation/Reservation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/Reservation/TransportType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/fxml/LoginScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/fxml/LoginScene.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalVersion/fxml/MainScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalVersion/fxml/MainScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fxml/LoginScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fxml/LoginScene.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/fxml/MainScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fxml/MainScene.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Data/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/DataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JavaFX/Controller/CreateCompanyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaFX/Controller/CreateCompanyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JavaFX/Controller/EditCompanyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaFX/Controller/EditCompanyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JavaFX/Controller/LoginSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaFX/Controller/LoginSceneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JavaFX/Controller/MainScene/CompanyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaFX/Controller/MainScene/CompanyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JavaFX/Controller/MainScene/TripController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaFX/Controller/MainScene/TripController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JavaFX/Controller/MainSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaFX/Controller/MainSceneController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JavaFX/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaFX/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JavaFX/css/layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaFX/css/layout.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Project/File/Interface/iReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/File/Interface/iReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Project/File/Interface/iWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/File/Interface/iWriter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Project/File/Reader/JSONReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/File/Reader/JSONReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Project/File/Writer/JSONWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/File/Writer/JSONWriter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Project/Person/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Person/Company.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/Person/Traveler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Person/Person.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Project/Person/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Person/Trip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/Reservation/Package.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Reservation/Package.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/Reservation/TransportType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Reservation/TransportType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/Singleton/PackageSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Singleton/PackageSingleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/Singleton/ReservationSingleton.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Project/Singleton/TravelerSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Singleton/TravelerSingleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Reservation/Package.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Reservation/Package.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Reservation/Reservation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Reservation/TransportType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Reservation/TransportType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/StateManager/States/AddPackageState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/StateManager/States/AddPackageState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/StateManager/States/AddReservationState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/StateManager/States/AddReservationState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/StateManager/States/AddTravelerState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/StateManager/States/AddTravelerState.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -142,7 +140,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Homework/4" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/fxml" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -151,15 +149,8 @@
     <property name="recentsLimit" value="5" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Drive\Fall 2019\Object-Oriented Development\Project\FinalVersion\resources\fxml" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="Project.Properties" />
-      <recent name="Project.File.FileType" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Drive\Fall 2019\Object-Oriented Development\Project\FinalVersion\resources\fxml" />
@@ -167,6 +158,13 @@
       <recent name="E:\Drive\Fall 2019\Object-Oriented Development\Project\FinalVersion\resources" />
       <recent name="E:\Drive\Fall 2019\Object-Oriented Development\Project\FinalVersion\src\Project\Person" />
       <recent name="E:\Drive\Fall 2019\Object-Oriented Development\Project\FinalVersion\src\Project\File\Interface" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Project.Properties" />
+      <recent name="Project.File.FileType" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Drive\Fall 2019\Object-Oriented Development\Project\FinalVersion\resources\fxml" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -275,7 +273,9 @@
       <workItem from="1574903344397" duration="7171000" />
       <workItem from="1574911004926" duration="11427000" />
       <workItem from="1574927890597" duration="8842000" />
-      <workItem from="1574982580188" duration="59183000" />
+      <workItem from="1574982580188" duration="66453000" />
+      <workItem from="1575160400589" duration="7056000" />
+      <workItem from="1575212502081" duration="25287000" />
     </task>
     <task id="LOCAL-00001" summary="Easy Clap">
       <created>1574913752842</created>
@@ -312,7 +312,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575073162781</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Massive Overhaul 2">
+      <created>1575153102716</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1575153102716</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -338,6 +345,7 @@
     <MESSAGE value="Changed sexybottom to initalize" />
     <MESSAGE value="Some massive changes to UI" />
     <MESSAGE value="Massive Overhaul" />
-    <option name="LAST_COMMIT_MESSAGE" value="Massive Overhaul" />
+    <MESSAGE value="Massive Overhaul 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Massive Overhaul 2" />
   </component>
 </project>

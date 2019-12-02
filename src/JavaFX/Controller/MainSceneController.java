@@ -6,16 +6,21 @@ import JavaFX.Controller.MainScene.TripController;
 import JavaFX.Scenes.CreateCompanyScene;
 import JavaFX.Scenes.EditCompanyScene;
 import Project.Person.Company;
-import Project.Person.Traveler;
+import Project.Person.Person;
 import Project.Person.Trip;
+import Project.Reservation.Place;
+import Project.Reservation.Package;
+import Project.Reservation.TransportType;
 import Project.StateManager.States.AddPackageState;
+import Project.StateManager.States.AddPaymentChoseState;
+import Project.StateManager.States.AddPaymentSelectState;
+import Project.StateManager.States.AddReservationState;
 import Project.StateManager.TripContext;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,31 +47,55 @@ public class MainSceneController
 
     //Traveler Section
     @FXML private Label travelerLabel;
-    @FXML private TextArea travelerTextArea;
-    @FXML private Button travelerSaveButton;
+    @FXML private ListView<Person> travelerListView;
+    @FXML private Button travelerAddButton;
     @FXML private Button travelerNextButton;
+    @FXML private Button travelerAddPerson;
+    @FXML private ComboBox<Person> travelerComboBox;
+    @FXML private TextField travelerNameTextField;
+    @FXML private Label TravelerNewPersonLabel;
 
     //Package Section
     @FXML private Label packageLabel;
-    @FXML private ComboBox packageCombo;
-    @FXML private ListView packageList;
+    @FXML private ComboBox<Place> packageComboFrom;
+    @FXML private ComboBox<Place> packageComboTo;
+    @FXML private ComboBox<TransportType> packageComboVehicle;
+    @FXML private ListView<Package> packageList;
     @FXML private Button packageAddButton;
     @FXML private Button packageNextButton;
+    @FXML private TextField packageHoursOfTravel;
+    @FXML private Label packageLabelTo;
+    @FXML private TextField packagePrice;
 
 
+    //Reservation Section
+    @FXML Label reservationLabel;
+    @FXML DatePicker reservationDate;
+    @FXML Button reservationNext;
 
-    private Trip selectedTrip;
-    private int selectedCompanyIndex = 0;
+    //Choose Person
+    @FXML Label choosePersonLabel;
+    @FXML ComboBox<Person> choosePersonCombo;
+    @FXML Button choosePersonNext;
 
-    private int selectedPackageIndex = 0;
+    //Select Payment
+    @FXML Label selectPaymentType;
+    @FXML Button selectCreditCard;
+    @FXML Button selectCheck;
+
     private TripContext stateManager;
-
+    private Alert alert;
     public void initalize()
     {
-
+        alert = new Alert(AlertType.ERROR);
         CompanyController companyController = new CompanyController(this);
         companyController.initalize();
-        loadPreloadedPackages();
+        setTripVisible(false);
+        setTravelerVisible(false);
+        setPackageVisible(false);
+        setReservationUIVisible(false);
+        setPaymentPersonUIVisible(false);
+        setPaymentTypeUIVisible(false);
         stateManager = new TripContext(this);
 
 
@@ -75,10 +104,7 @@ public class MainSceneController
         Load from DataController
 
      */
-    public void loadPreloadedPackages()
-    {
-        packageCombo.getItems().addAll(DataController.getPreloadedPackages());
-    }
+
 
     /*
         Button Mouse Event
@@ -120,46 +146,43 @@ public class MainSceneController
     }
     public void editCompanyListView(String input)
     {
-        companyList.getItems().get(selectedCompanyIndex).setCompanyName(input);
+        companyList.getItems().get(DataController.getSelectedCompanyIndex()).setCompanyName(input);
         for(int i = 0; i < companyList.getItems().size(); i++)
         {
             System.out.println(companyList.getItems().get(i));
         }
     }
+
     public void AddTrip(MouseEvent e)
     {
-        TripController.addTrip();
+        Trip tempTrip = new Trip(DataController.getCompanies().get(DataController.getSelectedCompanyIndex()), DataController.getSelectedAgent());
+        DataController.getCompanies().get(DataController.getSelectedCompanyIndex()).addToTripsList(tempTrip);
+        tempTrip.createTrip();
+        tripListView.getItems().add(tempTrip);
     }
 
+    /*
+
+     */
 
     // traveller
-    public void travelerSaveButtonClicked(MouseEvent e)
+    public void travelerAddButtonClicked(MouseEvent e)
     {
-        Alert.AlertType alertAlertType;
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        if(travelerTextArea.getText().isEmpty())
+        if(travelerComboBox.getSelectionModel().isEmpty())
         {
             alert.setTitle("Error");
-            alert.setHeaderText("Error in creating Travelers");
-            alert.setContentText("There must be at least one name in a each line!");
+            alert.setHeaderText("Traveler Add Person Error");
+            alert.setContentText("Must select a person from the list!");
             alert.showAndWait();
         }
         else
         {
-            List<Traveler> tempList = new ArrayList<>();
-            for(String name : travelerTextArea.getText().split("\n"))
-            {
-
-                Traveler traveler = new Traveler(name, DataController.getCompanies().get(DataController.getSelectedCompanyIndex()).getTrip(DataController.getSelectedTripIndex()));
-                tempList.add(traveler);
-
-                System.out.println(name);
-            }
-            DataController.getSelectedTrip().setTravelers(tempList);
-            DataController.getSelectedTrip().saveTraveler();
-            travelerTextArea.setDisable(false);
-            travelerNextButton.setDisable(false);
+            Person temp = travelerComboBox.getValue();
+            DataController.getSelectedTrip().addTraveler(temp);
+            travelerListView.getItems().add(temp);
+            DataController.saveTraveler();
         }
+
     }
     public void travelerNextButtonClicked(MouseEvent e)
     {
@@ -169,31 +192,112 @@ public class MainSceneController
         setPackageVisible(true);
         stateManager.setState(new AddPackageState(), this);
         stateManager.jumpState();
-
-
     }
+    public void travelerAddPersonClicked(MouseEvent e)
+    {
+        Alert.AlertType alertAlertType;
+
+        if(travelerNameTextField.getText().isEmpty())
+        {
+            alert.setTitle("Error");
+            alert.setHeaderText("Traveler Add Person Error");
+            alert.setContentText("Cannot be empty!");
+            alert.showAndWait();
+        }
+        else
+        {
+            Person temp = new Person(travelerNameTextField.getText());
+            travelerComboBox.getItems().add(temp);
+            DataController.getCompanies().get(DataController.getSelectedCompanyIndex()).addPerson(temp);
+            DataController.savePersonList();
+            travelerNameTextField.setText("");
+
+
+        }
+    }
+
     public void packageAddClicked()
     {
         Alert.AlertType alertAlertType;
         Alert alert = new Alert(AlertType.ERROR);
-        if(packageCombo.getSelectionModel().isEmpty())
+
+        if(packageComboFrom.getSelectionModel().isEmpty() || packageComboTo.getSelectionModel().isEmpty() || packageComboVehicle.getSelectionModel().isEmpty())
         {
             alert.setTitle("Selection error!");
             alert.setHeaderText("");
             alert.setContentText("Please select a package from the drop down!");
             alert.showAndWait();
         }
+        else if( packageHoursOfTravel.getText().isEmpty())
+        {
+            alert.setTitle("Error!");
+            alert.setHeaderText("");
+            alert.setContentText("Amout of hours to Travel cannot be blank!");
+            alert.showAndWait();
+        }
+        else if(isNumeric(packagePrice.getText()) == false && !packagePrice.getText().isEmpty())
+        {
+            alert.setTitle("Error!");
+            alert.setHeaderText("");
+            alert.setContentText("Enter number for Price!");
+            alert.showAndWait();
+        }
+        else if(isNumeric(packageHoursOfTravel.getText()) == false && !packageHoursOfTravel.getText().isEmpty())
+        {
+            alert.setTitle("Error!");
+            alert.setHeaderText("");
+            alert.setContentText("Enter number for Hours!");
+            alert.showAndWait();
+        }
         else
         {
-            selectedPackageIndex = packageCombo.getSelectionModel().getSelectedIndex();
-            packageList.getItems().add(DataController.getPreloadedPackages().get(selectedPackageIndex));
+            int selectedPackageIndex = packageComboFrom.getSelectionModel().getSelectedIndex();
+            //public Package(Place travelFrom, Place travelTo, double price, int hoursOfTravel, TransportType type)
+            Place from = packageComboFrom.getValue();
+            Place to = packageComboTo.getValue();
+            double price = Double.parseDouble(packagePrice.getText());
+            int hours = Integer.parseInt(packageHoursOfTravel.getText());
+            TransportType type = packageComboVehicle.getValue();
+            Package pack = new Package(from, to, price, hours, type);
+            DataController.getSelectedTrip().addToReservation(pack);
+            DataController.getSelectedTrip().saveReservations();
+            packageList.getItems().add(pack);
+
+            packageComboFrom.getSelectionModel().select(to);
+            packageComboTo.getSelectionModel().clearSelection();
+            packagePrice.setText("");
+            packageHoursOfTravel.setText("");
+            packageComboVehicle.getSelectionModel().clearSelection();
+
+
+
         }
     }
-    public void packagedNextClicked()
+    public void packagedNextClicked(MouseEvent e)
     {
 
+        setPackageUI(true);
+        setReservationUIVisible(true);
+        stateManager.setState(new AddReservationState(), this);
+        stateManager.jumpState();
+    }
+    public void reservationNextClicked(MouseEvent e)
+    {
+
+        setReservationUI(true);
+        setPaymentPersonUIVisible(true);
+        stateManager.setState(new AddPaymentChoseState(), this);
+        stateManager.jumpState();
     }
 
+    public void choosePersonNextClicked(MouseEvent e)
+    {
+
+        setPaymentPersonUI(true);
+        setPaymentTypeUIVisible(true);
+        stateManager.setState(new AddPaymentSelectState(), this);
+        stateManager.jumpState();
+    }
     public Label getSelectedAgentLabel()
     {
         return selectedAgentLabel;
@@ -224,14 +328,181 @@ public class MainSceneController
         this.tripListView = tripListView;
     }
 
-    public TextArea getTravelerTextArea()
+    public Label getPackageLabel()
     {
-        return travelerTextArea;
+        return packageLabel;
     }
 
-    public void setTravelerTextArea(String text)
+    public void setPackageLabel(Label packageLabel)
     {
-        this.travelerTextArea.setText(text);
+        this.packageLabel = packageLabel;
+    }
+
+    public ComboBox getPackageComboFrom()
+    {
+        return packageComboFrom;
+    }
+
+    public void setPackageComboFrom(ComboBox packageComboFrom)
+    {
+        this.packageComboFrom = packageComboFrom;
+    }
+
+    public ComboBox getPackageComboTo()
+    {
+        return packageComboTo;
+    }
+
+    public void setPackageComboTo(ComboBox packageComboTo)
+    {
+        this.packageComboTo = packageComboTo;
+    }
+
+    public ListView getPackageList()
+    {
+        return packageList;
+    }
+
+    public void setPackageList(ListView packageList)
+    {
+        this.packageList = packageList;
+    }
+
+    public Button getPackageAddButton()
+    {
+        return packageAddButton;
+    }
+
+    public void setPackageAddButton(Button packageAddButton)
+    {
+        this.packageAddButton = packageAddButton;
+    }
+
+    public Button getPackageNextButton()
+    {
+        return packageNextButton;
+    }
+
+    public void setPackageNextButton(Button packageNextButton)
+    {
+        this.packageNextButton = packageNextButton;
+    }
+
+    public TextField getPackageHoursOfTravel()
+    {
+        return packageHoursOfTravel;
+    }
+
+    public void setPackageHoursOfTravel(TextField packageHoursOfTravel)
+    {
+        this.packageHoursOfTravel = packageHoursOfTravel;
+    }
+
+    public ComboBox getPackageComboVehicle()
+    {
+        return packageComboVehicle;
+    }
+
+    public void setPackageComboVehicle(ComboBox packageComboVehicle)
+    {
+        this.packageComboVehicle = packageComboVehicle;
+    }
+
+    public TextField getPackagePrice()
+    {
+        return packagePrice;
+    }
+
+    public void setPackagePrice(TextField packagePrice)
+    {
+        this.packagePrice = packagePrice;
+    }
+
+    public Label getTravelerLabel()
+    {
+        return travelerLabel;
+    }
+
+    public void setTravelerLabel(Label travelerLabel)
+    {
+        this.travelerLabel = travelerLabel;
+    }
+
+    public ListView<Person> getTravelerListView()
+    {
+        return travelerListView;
+    }
+
+    public void setTravelerListView(ListView<Person> travelerListView)
+    {
+        this.travelerListView = travelerListView;
+    }
+
+
+
+    public void setTravelerNextButton(Button travelerNextButton)
+    {
+        this.travelerNextButton = travelerNextButton;
+    }
+
+    public Button getTravelerAddPerson()
+    {
+        return travelerAddPerson;
+    }
+
+    public void setTravelerAddPerson(Button travelerAddPerson)
+    {
+        this.travelerAddPerson = travelerAddPerson;
+    }
+
+    public ComboBox<Person> getTravelerComboBox()
+    {
+        return travelerComboBox;
+    }
+
+    public void setTravelerComboBox(ComboBox<Person> travelerComboBox)
+    {
+        this.travelerComboBox = travelerComboBox;
+    }
+
+    public TextField getTravelerNameTextField()
+    {
+        return travelerNameTextField;
+    }
+
+    public void setTravelerNameTextField(TextField travelerNameTextField)
+    {
+        this.travelerNameTextField = travelerNameTextField;
+    }
+
+    public Label getChoosePersonLabel()
+    {
+        return choosePersonLabel;
+    }
+
+    public void setChoosePersonLabel(Label choosePersonLabel)
+    {
+        this.choosePersonLabel = choosePersonLabel;
+    }
+
+    public ComboBox<Person> getChoosePersonCombo()
+    {
+        return choosePersonCombo;
+    }
+
+    public void setChoosePersonCombo(ComboBox<Person> choosePersonCombo)
+    {
+        this.choosePersonCombo = choosePersonCombo;
+    }
+
+    public Button getChoosePersonNext()
+    {
+        return choosePersonNext;
+    }
+
+    public void setChoosePersonNext(Button choosePersonNext)
+    {
+        this.choosePersonNext = choosePersonNext;
     }
 
     public void setTripVisible(boolean state)
@@ -245,27 +516,49 @@ public class MainSceneController
 
     public void setTravelerVisible(boolean state)
     {
+
         travelerLabel.setVisible(state);
-        travelerTextArea.setVisible(state);
+        travelerComboBox.setVisible(state);
+        travelerNameTextField.setVisible(state);
+        travelerAddButton.setVisible(state);
+        travelerAddPerson.setVisible(state);
         travelerNextButton.setVisible(state);
-        travelerSaveButton.setVisible(state);
-        if(state == false)
-        {
-            travelerTextArea.setText("");
-        }
-        else
-        {
-            //TODO implement
-        }
+        travelerListView.setVisible(state);
+        TravelerNewPersonLabel.setVisible(state);
+
     }
     public void setPackageVisible(boolean state)
     {
         packageLabel.setVisible(state);
         packageList.setVisible(state);
-        packageCombo.setVisible(state);
+        packageComboFrom.setVisible(state);
+        packageComboTo.setVisible(state);
+        packageComboVehicle.setVisible(state);
+        packagePrice.setVisible(state);
+        packageHoursOfTravel.setVisible(state);
+        packageLabelTo.setVisible(state);
         packageAddButton.setVisible(state);
         packageNextButton.setVisible(state);
     }
+    public void setReservationUIVisible(boolean state)
+    {
+        reservationLabel.setVisible(state);
+        reservationDate.setVisible(state);
+        reservationNext.setVisible(state);
+    }
+    public void setPaymentPersonUIVisible(boolean state)
+    {
+        choosePersonCombo.setVisible(state);
+        choosePersonLabel.setVisible(state);
+        choosePersonNext.setVisible(state);
+    }
+    public void setPaymentTypeUIVisible(boolean state)
+    {
+        selectPaymentType.setVisible(state);
+        selectCreditCard.setVisible(state);
+        selectCheck.setVisible(state);
+    }
+
     public void setCompanyUI(boolean state)
     {
         companyList.setDisable(state);
@@ -285,20 +578,46 @@ public class MainSceneController
     public void setTravelerUI(boolean state)
     {
         travelerLabel.setDisable(state);
-        travelerTextArea.setDisable(state);
-        travelerSaveButton.setDisable(state);
+        travelerComboBox.setDisable(state);
+        travelerNameTextField.setDisable(state);
+        travelerAddButton.setDisable(state);
+        travelerAddPerson.setDisable(state);
         travelerNextButton.setDisable(state);
+        travelerListView.setDisable(state);
+        TravelerNewPersonLabel.setDisable(state);
+
     }
     public void setPackageUI(boolean state)
     {
-
+        packageLabel.setDisable(state);
+        packageList.setDisable(state);
+        packageComboFrom.setDisable(state);
+        packageComboTo.setDisable(state);
+        packageComboVehicle.setDisable(state);
+        packagePrice.setDisable(state);
+        packageHoursOfTravel.setDisable(state);
+        packageLabelTo.setDisable(state);
+        packageAddButton.setDisable(state);
+        packageNextButton.setDisable(state);
     }
-
-    public void setTravelerSaveButton(boolean state)
+    public void setReservationUI(boolean state)
     {
-        travelerSaveButton.setDisable(state);
+        reservationLabel.setDisable(state);
+        reservationDate.setDisable(state);
+        reservationNext.setDisable(state);
     }
-
+    public void setPaymentPersonUI(boolean state)
+    {
+        choosePersonCombo.setDisable(state);
+        choosePersonLabel.setDisable(state);
+        choosePersonNext.setDisable(state);
+    }
+    public void setPaymentTypeUI(boolean state)
+    {
+        selectPaymentType.setDisable(state);
+        selectCreditCard.setDisable(state);
+        selectCheck.setDisable(state);
+    }
     public Button getTravelerNextButton()
     {
         return travelerNextButton;
@@ -307,5 +626,21 @@ public class MainSceneController
     public TripContext getStateManager()
     {
         return stateManager;
+    }
+    public boolean isNumeric(String temp)
+    {
+        if(temp == null)
+        {
+            return false;
+        }
+        try
+        {
+            double d = Double.parseDouble(temp);
+
+        } catch (NumberFormatException ex)
+        {
+            return false;
+        }
+        return true;
     }
 }
