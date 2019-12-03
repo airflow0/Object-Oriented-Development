@@ -12,6 +12,7 @@ public class AddPaymentSelectState implements iTripWriter
     public void state(TripContext context)
     {
         mainScene = context.getMainScene();
+        context.setStateIndex(3);
         load();
     }
 

@@ -3,9 +3,8 @@ package Project.Person;
 import Data.DataController;
 import Project.File.FileFactory.WriterFactory;
 import Project.File.FileType.FileType;
-import Project.Properties.Settings;
 import Project.Reservation.Package;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import Project.Reservation.Reservation;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -20,7 +19,7 @@ public class Trip
 
     private String uniqueID;
     private List<Person> travelers;
-    private List<Package> reservations;
+    private Reservation reservation;
     private Agent selectedAgent;
     private Path filePath;
     private Company company;
@@ -30,7 +29,7 @@ public class Trip
         this.company = company;
         this.selectedAgent = selectedAgent;
         travelers = new ArrayList<>();
-        reservations = new ArrayList<>();
+        reservation = new Reservation();
 
 
     }
@@ -72,22 +71,14 @@ public class Trip
         return selectedAgent;
     }
 
-    public void addToReservation(Package pack)
+    public Reservation getReservation()
     {
-        reservations.add(pack);
-    }
-    public Package getReservationByIndex(int index)
-    {
-        return reservations.get(index);
-    }
-    public List<Package> getReservations()
-    {
-        return reservations;
+        return reservation;
     }
 
-    public void setReservations(List<Package> reservations)
+    public void setReservation(Reservation reservation)
     {
-        this.reservations = reservations;
+        this.reservation = reservation;
     }
 
     public Path getFilePath()
@@ -109,10 +100,6 @@ public class Trip
         WriterFactory.createWriter(FileType.JSON).createTripDirectory(company,selectedAgent,date);
     }
 
-    public void saveReservations()
-    {
-        WriterFactory.createWriter(FileType.JSON).writeReservation(filePath, reservations);
-    }
     public void generateFilePath()
     {
         Path  tempPath = Paths.get(company.getFilePath() + "/" + DataController.getSelectedAgent().getName() + "/" + uniqueID);

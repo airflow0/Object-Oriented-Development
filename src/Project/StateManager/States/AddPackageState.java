@@ -2,14 +2,13 @@ package Project.StateManager.States;
 
 import Data.DataController;
 import JavaFX.Controller.MainSceneController;
-import JavaFX.Scenes.MainScene;
 import Project.Reservation.TransportType;
 import Project.StateManager.TripContext;
 import Project.StateManager.iTripWriter;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
-import javax.xml.crypto.Data;
+import java.time.LocalDate;
 
 public class AddPackageState implements iTripWriter
 {
@@ -18,6 +17,7 @@ public class AddPackageState implements iTripWriter
     public void state(TripContext context)
     {
         mainScene = context.getMainScene();
+        context.setStateIndex(1);
         load();
         mainScene.getPackageList().getSelectionModel().selectedItemProperty().addListener(new ChangeListener()
         {
@@ -31,7 +31,11 @@ public class AddPackageState implements iTripWriter
     @Override
     public void load()
     {
-        mainScene.getPackageList().getItems().addAll(DataController.getSelectedTrip().getReservations());
+        if(DataController.getSelectedTrip().getReservation().getArrivingOn() != null)
+        {
+            mainScene.getPackageStartingDate().setValue(LocalDate.parse(DataController.getSelectedTrip().getReservation().getArrivingOn()));
+        }
+        mainScene.getPackageList().getItems().addAll(DataController.getSelectedTrip().getReservation().getPackages());
         mainScene.getPackageComboFrom().getItems().addAll(DataController.getPlaceList());
         mainScene.getPackageComboTo().getItems().addAll(DataController.getPlaceList());
         mainScene.getPackageComboVehicle().getItems().addAll(TransportType.values());

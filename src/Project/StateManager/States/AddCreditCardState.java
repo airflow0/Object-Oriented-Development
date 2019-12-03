@@ -1,22 +1,19 @@
 package Project.StateManager.States;
 
-import JavaFX.Controller.MainSceneController;
 import Project.StateManager.TripContext;
 import Project.StateManager.iTripWriter;
 
-public class AddReservationState implements iTripWriter
+public class AddCreditCardState implements iTripWriter
 {
-    private MainSceneController mainScene;
     @Override
     public void state(TripContext context)
     {
-        mainScene = context.getMainScene();
-        load();
+
     }
 
     @Override
     public void load()
     {
-        mainScene.setPackageUI(true);
+
     }
 }

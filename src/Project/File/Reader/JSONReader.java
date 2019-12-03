@@ -7,6 +7,7 @@ import Project.Person.Person;
 import Project.Person.Trip;
 import Project.Reservation.Package;
 import Project.Reservation.Place;
+import Project.Reservation.Reservation;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -156,37 +157,29 @@ public class JSONReader implements iReader
         }
         return tempList;
     }
-    public List<Package> readReservationFromFile(Path filePath)
+    public Reservation readReservationFromFile(Path filePath)
     {
-        List<Package> tempList = new ArrayList<>();
-        Path tempPath = Paths.get(filePath +"/reservation.json");
+        Reservation reservation = new Reservation();
+        Path tempPath = Paths.get(filePath + "/reservation.json");
+        File file = new File(tempPath.toString());
         try
         {
-            File file = new File(tempPath.toString());
             if(file.length() == 0)
             {
-                return tempList;
+                return reservation;
             }
             else
             {
-                tempList = mapper.readValue(file, new TypeReference<List<Package>>(){});
-                return tempList;
+                reservation = mapper.readValue(file, Reservation.class);
+                return reservation;
             }
 
         }
-        catch (JsonParseException e)
+        catch (Exception e)
         {
             e.printStackTrace();
         }
-        catch (JsonMappingException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        return tempList;
+        return reservation;
     }
 
     @Override

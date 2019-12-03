@@ -12,6 +12,14 @@
 
 <AnchorPane id="allBackground" maxHeight="1080.0" maxWidth="1920.0" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFX.Controller.MainSceneController">
     <children>
+      <Pane fx:id="topMenuPane" prefHeight="27.0" prefWidth="1920.0">
+         <children>
+            <Label id="CloseButton" fx:id="closeButton" layoutX="1884.0" layoutY="6.0" onMouseClicked="#CloseButtonClicked" text="X" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children></Pane>
       <HBox id="CloseButton" prefHeight="1080.0" prefWidth="1920.0">
          <children>
               <VBox id="leftVBox" prefHeight="1080.0" prefWidth="330.0">
@@ -150,12 +158,12 @@
                      <bottom>
                         <HBox alignment="CENTER" prefHeight="56.0" prefWidth="330.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Button id="buttonTemplate" fx:id="AddTripButton" mnemonicParsing="false" onMousePressed="#AddTrip" prefHeight="25.0" prefWidth="125.0" text="Add Trip">
+                              <Button id="buttonTemplate" fx:id="AddTripButton" maxHeight="25.0" mnemonicParsing="false" onMousePressed="#AddTrip" prefHeight="25.0" prefWidth="125.0" text="Add Trip">
                                  <HBox.margin>
                                     <Insets right="10.0" top="2.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button id="buttonTemplate" fx:id="EditTripButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Edit Trip">
+                              <Button id="buttonTemplate" fx:id="EditTripButton" maxHeight="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Edit Trip">
                                  <HBox.margin>
                                     <Insets left="10.0" top="2.0" />
                                  </HBox.margin>
@@ -201,7 +209,7 @@
                         </ListView>
                         <HBox alignment="CENTER" prefHeight="25.0" prefWidth="200.0">
                            <children>
-                              <ComboBox id="comboBox" fx:id="travelerComboBox" prefHeight="25.0" prefWidth="150.0" promptText="Select Person" />
+                              <ComboBox id="comboBox" fx:id="travelerComboBox" maxHeight="25.0" prefHeight="25.0" prefWidth="311.0" promptText="Select Person" />
                            </children>
                            <VBox.margin>
                               <Insets top="10.0" />
@@ -211,12 +219,17 @@
                            <children>
                               <HBox alignment="TOP_CENTER" prefHeight="81.0" prefWidth="330.0">
                                  <children>
-                                    <Button id="buttonTemplate" fx:id="travelerAddButton" mnemonicParsing="false" onMouseClicked="#travelerAddButtonClicked" prefHeight="25.0" prefWidth="125.0" text="Add to List">
+                                    <Button id="buttonTemplate" fx:id="travelerAddButton" maxHeight="25.0" mnemonicParsing="false" onMouseClicked="#travelerAddButtonClicked" prefHeight="25.0" prefWidth="110.0" text="Add to List">
                                        <HBox.margin>
                                           <Insets left="5.0" right="5.0" top="10.0" />
                                        </HBox.margin>
                                     </Button>
-                                    <Button id="buttonTemplate" fx:id="travelerNextButton" mnemonicParsing="false" onMouseClicked="#travelerNextButtonClicked" prefHeight="25.0" prefWidth="125.0" text="Next">
+                                    <Button id="buttonTemplate" fx:id="LaterButtonTraveler" mnemonicParsing="false" onMouseClicked="#laterClicked" prefHeight="25.0" prefWidth="110.0" text="Later">
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button id="buttonTemplate" fx:id="travelerNextButton" maxHeight="25.0" mnemonicParsing="false" onMouseClicked="#travelerNextButtonClicked" prefHeight="25.0" prefWidth="110.0" text="Next">
                                        <HBox.margin>
                                           <Insets left="5.0" right="5.0" top="10.0" />
                                        </HBox.margin>
@@ -234,12 +247,15 @@
                                        </VBox.margin>
                                        <children>
                                           <Label id="logintext" fx:id="TravelerNewPersonLabel" text="Add New Person" />
-                                          <TextField fx:id="travelerNameTextField" alignment="CENTER" promptText="Person Name" />
+                                          <TextField id="searchclient" fx:id="travelerNameTextField" alignment="CENTER" maxHeight="25.0" promptText="Person Name">
+                                             <VBox.margin>
+                                                <Insets top="5.0" />
+                                             </VBox.margin></TextField>
                                        </children>
                                     </VBox>
                                     <HBox alignment="TOP_CENTER" prefHeight="49.0" prefWidth="330.0">
                                        <children>
-                                          <Button id="buttonTemplate" fx:id="travelerAddPerson" mnemonicParsing="false" onMouseClicked="#travelerAddPersonClicked" text="Add Person" textAlignment="CENTER">
+                                          <Button id="buttonTemplate" fx:id="travelerAddPerson" maxHeight="25.0" mnemonicParsing="false" onMouseClicked="#travelerAddPersonClicked" text="Add Person" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets bottom="10.0" top="5.0" />
                                              </HBox.margin>
@@ -257,42 +273,47 @@
               <VBox id="allBackgroundRight" prefHeight="1080.0" prefWidth="330.0">
                <children>
                   <VBox prefHeight="27.0" prefWidth="330.0" />
-                  <VBox layoutY="27.0" prefHeight="556.0" prefWidth="330.0">
+                  <VBox layoutY="27.0" prefHeight="628.0" prefWidth="330.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="562.0" prefWidth="330.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="638.0" prefWidth="330.0">
                            <children>
                               <Label id="logintext" fx:id="packageLabel" text="Package">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <ListView id="clientlist" fx:id="packageList" prefHeight="180.0" prefWidth="310.0">
+                              <ListView id="clientlist" fx:id="packageList" prefHeight="265.0" prefWidth="310.0">
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
                               </ListView>
-                              <VBox alignment="CENTER" prefHeight="282.0" prefWidth="330.0">
+                              <VBox alignment="CENTER" prefHeight="259.0" prefWidth="330.0">
                                  <children>
-                                    <ComboBox id="comboBox" fx:id="packageComboFrom" prefHeight="25.0" prefWidth="310.0" promptText="Starting Location" />
+                                    <DatePicker fx:id="packageStartingDate" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="330.0" promptText="Select Date">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                    </DatePicker>
+                                    <ComboBox id="comboBox" fx:id="packageComboFrom" maxHeight="25.0" prefHeight="25.0" prefWidth="310.0" promptText="Starting Location" />
                                     <Label id="logintext" fx:id="packageLabelTo" text="to">
                                        <VBox.margin>
                                           <Insets bottom="5.0" top="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <ComboBox id="comboBox" fx:id="packageComboTo" prefHeight="25.0" prefWidth="310.0" promptText="Ending Location" />
+                                    <ComboBox id="comboBox" fx:id="packageComboTo" maxHeight="25.0" prefHeight="25.0" prefWidth="310.0" promptText="Ending Location" />
                                     <VBox alignment="CENTER" prefHeight="147.0" prefWidth="330.0">
                                        <children>
-                                          <TextField fx:id="packageHoursOfTravel" alignment="CENTER" prefHeight="25.0" prefWidth="310.0" promptText="Hours of Travel">
+                                          <TextField id="searchclient" fx:id="packageHoursOfTravel" alignment="CENTER" maxHeight="25.0" prefHeight="25.0" prefWidth="310.0" promptText="Hours of Travel">
                                              <VBox.margin>
                                                 <Insets left="10.0" right="10.0" top="10.0" />
                                              </VBox.margin>
                                           </TextField>
-                                          <TextField fx:id="packagePrice" alignment="CENTER" prefHeight="25.0" prefWidth="310.0" promptText="Price">
+                                          <TextField id="searchclient" fx:id="packagePrice" alignment="CENTER" maxHeight="25.0" prefHeight="25.0" prefWidth="310.0" promptText="Price">
                                              <VBox.margin>
                                                 <Insets left="10.0" right="10.0" top="10.0" />
                                              </VBox.margin>
                                           </TextField>
-                                          <ComboBox id="comboBox" fx:id="packageComboVehicle" prefHeight="25.0" prefWidth="310.0" promptText="Select Vehicle">
+                                          <ComboBox id="comboBox" fx:id="packageComboVehicle" maxHeight="25.0" prefHeight="25.0" prefWidth="310.0" promptText="Select Vehicle">
                                              <VBox.margin>
                                                 <Insets top="10.0" />
                                              </VBox.margin>
@@ -303,11 +324,16 @@
                               </VBox>
                               <HBox alignment="CENTER" prefHeight="43.0" prefWidth="330.0">
                                  <children>
-                                    <Button id="buttonTemplate" fx:id="packageAddButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#packageAddClicked" prefHeight="25.0" prefWidth="150.0" text="Add">
+                                    <Button id="buttonTemplate" fx:id="packageAddButton" alignment="CENTER" maxHeight="25.0" mnemonicParsing="false" onMouseClicked="#packageAddClicked" prefHeight="25.0" prefWidth="110.0" text="Add">
                                        <HBox.margin>
                                           <Insets right="5.0" />
                                        </HBox.margin></Button>
-                                    <Button id="buttonTemplate" fx:id="packageNextButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#packagedNextClicked" prefHeight="25.0" prefWidth="150.0" text="Next">
+                                    <Button id="buttonTemplate" fx:id="LaterButtonPackage" mnemonicParsing="false" onMouseClicked="#laterClicked" prefHeight="25.0" prefWidth="110.0" text="Later">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button id="buttonTemplate" fx:id="packageNextButton" alignment="CENTER" maxHeight="25.0" mnemonicParsing="false" onMouseClicked="#packagedNextClicked" prefHeight="25.0" prefWidth="110.0" text="Next">
                                        <HBox.margin>
                                           <Insets left="5.0" />
                                        </HBox.margin>
@@ -324,33 +350,7 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="164.0" prefWidth="330.0">
-                     <children>
-                        <VBox id="allBackgroundTop" alignment="CENTER" prefHeight="28.0" prefWidth="330.0">
-                           <children>
-                              <Label id="logintext" fx:id="reservationLabel" text="Reservation">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" top="5.0" />
-                                 </VBox.margin>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <DatePicker fx:id="reservationDate" prefHeight="20.0" prefWidth="330.0" promptText="Select Date">
-                           <VBox.margin>
-                              <Insets left="10.0" right="10.0" />
-                           </VBox.margin>
-                        </DatePicker>
-                        <Button id="buttonTemplate" fx:id="reservationNext" mnemonicParsing="false" onMouseClicked="#reservationNextClicked" text="Next">
-                           <VBox.margin>
-                              <Insets bottom="10.0" top="10.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <VBox id="allBackgroundTop" alignment="CENTER" prefHeight="182.0" prefWidth="330.0">
+                  <VBox id="allBackgroundTop" alignment="CENTER" prefHeight="148.0" prefWidth="330.0">
                      <children>
                         <Label id="logintext" fx:id="choosePersonLabel" text="Choose Person">
                            <font>
@@ -360,16 +360,28 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <ComboBox fx:id="choosePersonCombo" prefWidth="150.0">
+                        <ComboBox id="comboBox" fx:id="choosePersonCombo" maxHeight="25.0" prefHeight="25.0" prefWidth="300.0" promptText="Select Person">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </ComboBox>
-                        <Button id="buttonTemplate" fx:id="choosePersonNext" mnemonicParsing="false" onMouseClicked="#choosePersonNextClicked" text="Next">
+                        <HBox alignment="CENTER" prefHeight="28.0" prefWidth="330.0">
+                           <children>
+                              <Button id="buttonTemplate" fx:id="LaterButtonPaymentPerson" mnemonicParsing="false" onMouseClicked="#laterClicked" text="Later">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button id="buttonTemplate" fx:id="choosePersonNext" maxHeight="25.0" mnemonicParsing="false" onMouseClicked="#choosePersonNextClicked" text="Next">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
                            <VBox.margin>
-                              <Insets bottom="10.0" top="10.0" />
+                              <Insets top="10.0" />
                            </VBox.margin>
-                        </Button>
+                        </HBox>
                      </children>
                   </VBox>
                   <VBox id="allBackgroundTop" prefHeight="191.0" prefWidth="330.0">
@@ -384,14 +396,19 @@
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <Button id="buttonTemplate" fx:id="selectCreditCard" mnemonicParsing="false" prefWidth="330.0" text="Credit Card">
+                              <Button id="buttonTemplate" fx:id="selectCreditCard" maxHeight="25.0" mnemonicParsing="false" onMouseClicked="#selectCreditCardClicked" prefWidth="330.0" text="Credit Card">
                                  <VBox.margin>
                                     <Insets left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button id="buttonTemplate" fx:id="selectCheck" mnemonicParsing="false" prefWidth="330.0" text="Check" textAlignment="CENTER">
+                              <Button id="buttonTemplate" fx:id="selectCheck" maxHeight="25.0" mnemonicParsing="false" onMouseClicked="#selectCheckClicked" prefWidth="330.0" text="Check" textAlignment="CENTER">
                                  <VBox.margin>
-                                    <Insets bottom="20.0" left="10.0" right="10.0" top="10.0" />
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button id="buttonTemplate" fx:id="LaterButtonPaymentType" mnemonicParsing="false" onMouseClicked="#laterClicked" prefHeight="25.0" prefWidth="310.0" text="Later">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" />
                                  </VBox.margin>
                               </Button>
                            </children>
@@ -405,15 +422,63 @@
                      </VBox.margin>
                   </VBox>
                </children></VBox>
+            <VBox maxHeight="1053.0" prefHeight="1053.0" prefWidth="931.0" translateY="27.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="251.0" prefWidth="931.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="305.0" prefWidth="466.0">
+                           <children>
+                              <Label id="logintext" fx:id="creditCardLabel" text="Credit Card Payment">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER" maxHeight="168.0" prefHeight="168.0" prefWidth="466.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="10.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="168.0" prefWidth="271.0">
+                                       <children>
+                                          <TextField id="searchclient" fx:id="creditCardNum" alignment="CENTER" maxHeight="25.0" prefHeight="25.0" prefWidth="226.0" promptText="Credit Card Number">
+                                             <VBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField id="searchclient" fx:id="creditCardDate" alignment="CENTER" maxHeight="25.0" promptText="Date">
+                                             <VBox.margin>
+                                                <Insets left="10.0" right="10.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField id="searchclient" fx:id="creditCardCSV" alignment="CENTER" maxHeight="25.0" promptText="CSV">
+                                             <VBox.margin>
+                                                <Insets left="10.0" right="10.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField id="searchclient" fx:id="creditCardPayment" alignment="CENTER" maxHeight="25.0" promptText="Amount to Pay">
+                                             <VBox.margin>
+                                                <Insets left="50.0" right="50.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <Label id="logintext" fx:id="creditCardAmountDueLabel" text="Label">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="27.0" prefWidth="466.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <VBox maxHeight="351.0" prefHeight="351.0" prefWidth="100.0" />
+                  <VBox maxHeight="351.0" prefHeight="351.0" prefWidth="100.0" />
+               </children>
+            </VBox>
          </children>
       </HBox>
-      <Pane fx:id="topMenuPane" prefHeight="27.0" prefWidth="1920.0">
-         <children>
-            <Label id="CloseButton" fx:id="closeButton" layoutX="1884.0" layoutY="6.0" onMouseClicked="#CloseButtonClicked" text="X" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         </children></Pane>
     </children>
 </AnchorPane>

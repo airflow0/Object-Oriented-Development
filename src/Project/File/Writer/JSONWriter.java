@@ -9,6 +9,7 @@ import Project.Person.*;
 
 import Project.Reservation.Package;
 import Project.Reservation.Place;
+import Project.Reservation.Reservation;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.*;
 import javafx.scene.control.Alert;
@@ -52,6 +53,7 @@ public class JSONWriter implements iWriter
     {
         try
         {
+            mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
             mapper.writerWithDefaultPrettyPrinter().writeValue(new File(path + "/"  + "traveler.json"), people);
         }
         catch (JsonGenerationException e)
@@ -68,11 +70,11 @@ public class JSONWriter implements iWriter
         }
     }
     @Override
-    public void writeReservation(Path path, List<Package> packages)
+    public void writeReservation(Path path, Reservation input)
     {
         try
         {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(path + "/reservation.json"), packages);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(path + "/reservation.json"), input);
         }
         catch (JsonGenerationException e)
         {

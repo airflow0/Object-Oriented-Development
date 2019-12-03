@@ -3,6 +3,7 @@ package JavaFX.Controller.MainScene;
 import Data.DataController;
 import JavaFX.Controller.MainSceneController;
 import Project.Person.Trip;
+import Project.StateManager.States.AddTravelerState;
 import Project.StateManager.TripContext;
 import Project.StateManager.iTripWriter;
 import javafx.beans.value.ChangeListener;
@@ -42,6 +43,12 @@ public class TripController
                     mainScene.getStateManager().jumpState();
                     mainScene.setCompanyUI(true);
                     mainScene.setTripUI(true);
+                    mainScene.setTravelerUI(false);
+                    mainScene.setPackageUI(false);
+                    mainScene.setPaymentPersonUI(false);
+                    mainScene.setPaymentTypeUI(false);
+                    mainScene.getStateManager().setState(new AddTravelerState(), mainScene);
+                    mainScene.getStateManager().jumpState();
                 }
             }
         });

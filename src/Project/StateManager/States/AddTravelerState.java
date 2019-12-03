@@ -15,6 +15,7 @@ public class AddTravelerState implements iTripWriter
     {
 
         mainScene = context.getMainScene();
+        context.setStateIndex(0);
         load();
 
     }
