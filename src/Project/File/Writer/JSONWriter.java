@@ -5,6 +5,7 @@ package Project.File.Writer;
 import Project.File.FileFactory.ReaderFactory;
 import Project.File.FileType.FileType;
 import Project.File.Interface.iWriter;
+import Project.Payment.Payment;
 import Project.Person.*;
 
 import Project.Reservation.Package;
@@ -140,6 +141,8 @@ public class JSONWriter implements iWriter
         Path reservation = filePath.resolve("reservation.json");
         Path payment = filePath.resolve("payment.json");
         Path billing = filePath.resolve("billing.json");
+        Path thankyou = filePath.resolve("thankyou.json");
+        Path itinerary = filePath.resolve("itinerary.json");
         if(Files.exists(filePath))
         {
 
@@ -158,6 +161,8 @@ public class JSONWriter implements iWriter
                 Files.createFile(reservation);
                 Files.createFile(payment);
                 Files.createFile(billing);
+                Files.createFile(thankyou);
+                Files.createFile(itinerary);
                 alert.setTitle("Information");
                 alert.setHeaderText(null);
                 alert.setContentText("Trip Created!");
@@ -196,4 +201,26 @@ public class JSONWriter implements iWriter
         }
 
     }
+
+    @Override
+    public void writePayment(Path filePath, Payment payment)
+    {
+        try
+        {
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath + "/payment.json"), payment);
+        }
+        catch (JsonGenerationException e)
+        {
+            e.printStackTrace();
+        }
+        catch (JsonMappingException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
 }

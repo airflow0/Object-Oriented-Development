@@ -3,6 +3,8 @@ package Project.Person;
 import Data.DataController;
 import Project.File.FileFactory.WriterFactory;
 import Project.File.FileType.FileType;
+import Project.Payment.Payment;
+import Project.Payment.iPayment;
 import Project.Reservation.Package;
 import Project.Reservation.Reservation;
 
@@ -23,6 +25,7 @@ public class Trip
     private Agent selectedAgent;
     private Path filePath;
     private Company company;
+    private Payment payment;
 
     public Trip(Company company, Agent selectedAgent)
     {
@@ -30,7 +33,7 @@ public class Trip
         this.selectedAgent = selectedAgent;
         travelers = new ArrayList<>();
         reservation = new Reservation();
-
+        payment = new Payment();
 
     }
 
@@ -105,6 +108,17 @@ public class Trip
         Path  tempPath = Paths.get(company.getFilePath() + "/" + DataController.getSelectedAgent().getName() + "/" + uniqueID);
         filePath = tempPath;
     }
+
+    public Payment getPayment()
+    {
+        return payment;
+    }
+
+    public void setPayment(Payment payment)
+    {
+        this.payment = payment;
+    }
+
     public int getTravelerListSize()
     {
         return travelers.size();

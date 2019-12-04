@@ -1,5 +1,6 @@
 package Project.File.Interface;
 
+import Project.Payment.Payment;
 import Project.Person.*;
 import Project.Reservation.Package;
 import Project.Reservation.Place;
@@ -16,6 +17,7 @@ public interface iWriter
     void createCompanyDirectory(Path filePath);
     void createTripDirectory(Company company, Agent selectedAgent, String uniqueID);
     void writePerson(Path filePath, List<Person> personList);
+    void writePayment(Path filePath, Payment payment);
 
 
 }

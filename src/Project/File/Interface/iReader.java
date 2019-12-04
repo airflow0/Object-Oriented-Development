@@ -1,5 +1,6 @@
 package Project.File.Interface;
 
+import Project.Payment.Payment;
 import Project.Person.Agent;
 import Project.Person.Company;
 import Project.Person.Person;
@@ -18,6 +19,7 @@ public interface iReader
     List<Trip> readTripFromDirectory(Company company, Agent agent);
     List<Company> readCompanyFromDirectory();
     Reservation readReservationFromFile(Path filePath);
+    Payment readPaymentFromFile(Path filePath);
     List<Place> readPlaceList();
     List<Person> readPersonList(Path filePath);
 }

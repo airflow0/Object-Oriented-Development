@@ -6,7 +6,6 @@ import Project.Reservation.Reservation;
 
 public class CreditCard implements iPayment
 {
-    private Person selectedPerson;
     private double totalPrice;
     private String creditCardNumber;
     private String creditCardDate;
@@ -16,14 +15,15 @@ public class CreditCard implements iPayment
         totalPrice = 0;
     }
 
-    public Person getSelectedPerson()
+    @Override
+    public double getTotalPrice()
     {
-        return selectedPerson;
+        return totalPrice;
     }
 
-    public void setSelectedPerson(Person selectedPerson)
+    public void setTotalPrice(double totalPrice)
     {
-        this.selectedPerson = selectedPerson;
+        this.totalPrice = totalPrice;
     }
 
     @Override

@@ -4,6 +4,7 @@ import Data.DataController;
 import JavaFX.Controller.MainScene.CompanyController;
 import JavaFX.Scenes.CreateCompanyScene;
 import JavaFX.Scenes.EditCompanyScene;
+import Project.Payment.Payment;
 import Project.Person.Company;
 import Project.Person.Person;
 import Project.Person.Trip;
@@ -19,6 +20,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import javax.xml.crypto.Data;
 
 public class MainSceneController
 {
@@ -81,12 +84,25 @@ public class MainSceneController
     @FXML private TextField creditCardCSV;
     @FXML private TextField creditCardPayment;
     @FXML private Label creditCardAmountDueLabel;
+    @FXML private Button creditCardPaymentButton;
+
 
     //Later Button
     @FXML private Button LaterButtonTraveler;
     @FXML private Button LaterButtonPackage;
     @FXML private Button LaterButtonPaymentPerson;
     @FXML private Button LaterButtonPaymentType;
+    @FXML private Button LaterButtonCredit;
+    @FXML private Button laterButtonThankYou;
+
+    //Thank you
+    @FXML private Label thankyouLabel;
+    @FXML private TextArea thankyouTextArea;
+    @FXML private Button thankyouPrintItinerary;
+
+    //Itinerary
+    @FXML private Label itineraryLabel;
+    @FXML private TextArea itineraryTextArea;
 
 
     private TripContext stateManager;
@@ -102,6 +118,8 @@ public class MainSceneController
         setPaymentPersonUIVisible(false);
         setPaymentTypeUIVisible(false);
         setCreditCardVisible(false);
+        setThankYouVisible(false);
+        setItineraryVisible(false);
         stateManager = new TripContext(this);
 
 
@@ -281,7 +299,6 @@ public class MainSceneController
     }
     public void packagedNextClicked(MouseEvent e)
     {
-
         setPackageUI(true);
         setPaymentPersonUIVisible(true);
         stateManager.setState(new AddPaymentPersonState(), this);
@@ -293,16 +310,24 @@ public class MainSceneController
 
         if(choosePersonCombo.getSelectionModel().isEmpty())
         {
-
+            //TODO:: Alert
+            Alert.AlertType alertAlertType;
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("You must select a person before moving onto the next step!");
+            alert.showAndWait();
         }
         else
         {
-
+            Payment temp = new Payment(choosePersonCombo.getValue());
+            DataController.getSelectedTrip().setPayment(temp);
+            DataController.savePayment();
+            setPaymentPersonUI(true);
+            setPaymentTypeUIVisible(true);
+            stateManager.setState(new AddPaymentSelectState(), this);
+            stateManager.jumpState();
         }
-        setPaymentPersonUI(true);
-        setPaymentTypeUIVisible(true);
-        stateManager.setState(new AddPaymentSelectState(), this);
-        stateManager.jumpState();
+
     }
     public void selectCreditCardClicked(MouseEvent e)
     {
@@ -323,6 +348,17 @@ public class MainSceneController
         creditCardCSV.setVisible(false);
         stateManager.setState(new AddCheckState(), this);
         stateManager.jumpState();
+    }
+    public void makePaymentClicked(MouseEvent e)
+    {
+        setCreditCardUI(true);
+
+        setThankYouVisible(true);
+
+    }
+    public void printItineraryClicked(MouseEvent e)
+    {
+
     }
     public void laterClicked(MouseEvent e)
     {
@@ -352,10 +388,15 @@ public class MainSceneController
         setTravelerVisible(false);
         setPackageVisible(false);
         setPaymentTypeUIVisible(false);
-        setPaymentTypeUIVisible(false);
         setCreditCardVisible(false);
+        setThankYouVisible(false);
+        setPaymentPersonUIVisible(false);
+        setItineraryVisible(false);
+
+
         setTripUI(false);
         setCompanyUI(false);
+
 
 
 
@@ -579,6 +620,8 @@ public class MainSceneController
     }
     public void clearAll()
     {
+        choosePersonCombo.getSelectionModel().clearSelection();
+        choosePersonCombo.getItems().clear();
         tripListView.getSelectionModel().clearSelection();
         travelerListView.getItems().clear();
         travelerNameTextField.clear();
@@ -590,7 +633,7 @@ public class MainSceneController
         packageHoursOfTravel.clear();
         packagePrice.clear();
         packageComboVehicle.getSelectionModel().clearSelection();
-        choosePersonCombo.getSelectionModel().clearSelection();
+
 
     }
     public void setTripVisible(boolean state)
@@ -631,7 +674,18 @@ public class MainSceneController
         packageStartingDate.setVisible(state);
         LaterButtonPackage.setVisible(state);
     }
-
+    public void setThankYouVisible(boolean state)
+    {
+        thankyouLabel.setVisible(state);
+        thankyouTextArea.setVisible(state);
+        thankyouPrintItinerary.setVisible(state);
+        laterButtonThankYou.setVisible(state);
+    }
+    public void setItineraryVisible(boolean state)
+    {
+        itineraryLabel.setVisible(state);
+        itineraryTextArea.setVisible(state);
+    }
     public void setPaymentPersonUIVisible(boolean state)
     {
         choosePersonCombo.setVisible(state);
@@ -654,6 +708,8 @@ public class MainSceneController
         creditCardCSV.setVisible(state);
         creditCardPayment.setVisible(state);
         creditCardAmountDueLabel.setVisible(state);
+        LaterButtonCredit.setVisible(state);
+        creditCardPaymentButton.setVisible(state);
     }
     public void setCompanyUI(boolean state)
     {
@@ -714,6 +770,29 @@ public class MainSceneController
         selectCheck.setDisable(state);
         LaterButtonPaymentType.setDisable(state);
     }
+    public void setCreditCardUI(boolean state)
+    {
+        creditCardLabel.setDisable(state);
+        creditCardNum.setDisable(state);
+        creditCardDate.setDisable(state);
+        creditCardCSV.setDisable(state);
+        creditCardPayment.setDisable(state);
+        creditCardAmountDueLabel.setDisable(state);
+        creditCardPaymentButton.setDisable(state);
+        LaterButtonCredit.setDisable(state);
+    }
+    public void setThankYouUI(boolean state)
+    {
+        thankyouLabel.setDisable(state);
+        thankyouTextArea.setDisable(state);
+        thankyouPrintItinerary.setDisable(state);
+        laterButtonThankYou.setDisable(state);
+    }
+    public void setItineraryUI(boolean state)
+    {
+        itineraryLabel.setDisable(state);
+        itineraryTextArea.setDisable(state);
+    }
     public Button getTravelerNextButton()
     {
         return travelerNextButton;
@@ -742,5 +821,65 @@ public class MainSceneController
     public TripContext getStateManager()
     {
         return stateManager;
+    }
+
+    public Label getCreditCardLabel()
+    {
+        return creditCardLabel;
+    }
+
+    public void setCreditCardLabel(Label creditCardLabel)
+    {
+        this.creditCardLabel = creditCardLabel;
+    }
+
+    public TextField getCreditCardNum()
+    {
+        return creditCardNum;
+    }
+
+    public void setCreditCardNum(TextField creditCardNum)
+    {
+        this.creditCardNum = creditCardNum;
+    }
+
+    public TextField getCreditCardDate()
+    {
+        return creditCardDate;
+    }
+
+    public void setCreditCardDate(TextField creditCardDate)
+    {
+        this.creditCardDate = creditCardDate;
+    }
+
+    public TextField getCreditCardCSV()
+    {
+        return creditCardCSV;
+    }
+
+    public void setCreditCardCSV(TextField creditCardCSV)
+    {
+        this.creditCardCSV = creditCardCSV;
+    }
+
+    public TextField getCreditCardPayment()
+    {
+        return creditCardPayment;
+    }
+
+    public void setCreditCardPayment(TextField creditCardPayment)
+    {
+        this.creditCardPayment = creditCardPayment;
+    }
+
+    public Label getCreditCardAmountDueLabel()
+    {
+        return creditCardAmountDueLabel;
+    }
+
+    public void setCreditCardAmountDueLabel(Label creditCardAmountDueLabel)
+    {
+        this.creditCardAmountDueLabel = creditCardAmountDueLabel;
     }
 }

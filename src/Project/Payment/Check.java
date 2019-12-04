@@ -6,7 +6,6 @@ import Project.Reservation.Reservation;
 
 public class Check implements iPayment
 {
-    private Person selectedPerson;
     private double totalPrice;
     private String accountNumber;
     private String routingNumber;
@@ -16,14 +15,15 @@ public class Check implements iPayment
         totalPrice = 0;
     }
 
-    public Person getSelectedPerson()
+    @Override
+    public double getTotalPrice()
     {
-        return selectedPerson;
+        return totalPrice;
     }
 
-    public void setSelectedPerson(Person selectedPerson)
+    public void setTotalPrice(double totalPrice)
     {
-        this.selectedPerson = selectedPerson;
+        this.totalPrice = totalPrice;
     }
 
     @Override
@@ -34,4 +34,5 @@ public class Check implements iPayment
             totalPrice = totalPrice + pack.getPrice();
         }
     }
+
 }

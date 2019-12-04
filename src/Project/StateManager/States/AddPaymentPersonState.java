@@ -21,6 +21,7 @@ public class AddPaymentPersonState implements iTripWriter
     public void load()
     {
         mainScene.getChoosePersonCombo().getItems().setAll(DataController.getSelectedCompany().getPeople());
+        mainScene.getChoosePersonCombo().getSelectionModel().select(DataController.getSelectedTrip().getPayment().getPerson());
         mainScene.setPackageUI(true);
     }
 }

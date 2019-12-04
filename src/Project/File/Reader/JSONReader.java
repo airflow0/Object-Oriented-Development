@@ -1,6 +1,7 @@
 package Project.File.Reader;
 
 import Project.File.Interface.iReader;
+import Project.Payment.Payment;
 import Project.Person.Agent;
 import Project.Person.Company;
 import Project.Person.Person;
@@ -180,6 +181,32 @@ public class JSONReader implements iReader
             e.printStackTrace();
         }
         return reservation;
+    }
+
+    @Override
+    public Payment readPaymentFromFile(Path filePath)
+    {
+        Payment payment = new Payment();
+        Path tempPath = Paths.get(filePath + "/payment.json");
+        File file = new File(tempPath.toString());
+        try
+        {
+            if(file.length() == 0)
+            {
+                return payment;
+            }
+            else
+            {
+                payment = mapper.readValue(file, Payment.class);
+                return payment;
+            }
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return payment;
     }
 
     @Override

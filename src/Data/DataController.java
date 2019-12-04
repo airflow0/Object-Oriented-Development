@@ -57,7 +57,7 @@ public class DataController
         }
         TravelerSingleton.populateTraveler(companies);
         PackageSingleton.getReservation(companies);
-
+        PaymentSingleton.getPayment(companies);
         placeList = PlaceSingleton.getPlaceList();
 
     }
@@ -72,6 +72,10 @@ public class DataController
     public static void saveReservation()
     {
         WriterFactory.createWriter(FileType.JSON).writeReservation(selectedTrip.getFilePath(), selectedTrip.getReservation());
+    }
+    public static void savePayment()
+    {
+        WriterFactory.createWriter(FileType.JSON).writePayment(selectedTrip.getFilePath(), selectedTrip.getPayment());
     }
     public static List<Company> getCompanies()
     {
@@ -174,4 +178,5 @@ public class DataController
             }
         }
     }
+
 }
