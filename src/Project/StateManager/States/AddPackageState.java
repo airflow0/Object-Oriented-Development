@@ -35,9 +35,9 @@ public class AddPackageState implements iTripWriter
         {
             mainScene.getPackageStartingDate().setValue(LocalDate.parse(DataController.getSelectedTrip().getReservation().getArrivingOn()));
         }
-        mainScene.getPackageList().getItems().addAll(DataController.getSelectedTrip().getReservation().getPackages());
-        mainScene.getPackageComboFrom().getItems().addAll(DataController.getPlaceList());
-        mainScene.getPackageComboTo().getItems().addAll(DataController.getPlaceList());
-        mainScene.getPackageComboVehicle().getItems().addAll(TransportType.values());
+        mainScene.getPackageList().getItems().setAll(DataController.getSelectedTrip().getReservation().getPackages());
+        mainScene.getPackageComboFrom().getItems().setAll(DataController.getPlaceList());
+        mainScene.getPackageComboTo().getItems().setAll(DataController.getPlaceList());
+        mainScene.getPackageComboVehicle().getItems().setAll(TransportType.values());
     }
 }

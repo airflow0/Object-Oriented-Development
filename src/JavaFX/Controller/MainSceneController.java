@@ -290,6 +290,15 @@ public class MainSceneController
 
     public void choosePersonNextClicked(MouseEvent e)
     {
+
+        if(choosePersonCombo.getSelectionModel().isEmpty())
+        {
+
+        }
+        else
+        {
+
+        }
         setPaymentPersonUI(true);
         setPaymentTypeUIVisible(true);
         stateManager.setState(new AddPaymentSelectState(), this);
@@ -710,10 +719,6 @@ public class MainSceneController
         return travelerNextButton;
     }
 
-    public TripContext getStateManager()
-    {
-        return stateManager;
-    }
     public boolean isNumeric(String temp)
     {
         if(temp == null)
@@ -730,10 +735,12 @@ public class MainSceneController
         }
         return true;
     }
-
     public void setStateManager(TripContext stateManager)
     {
         this.stateManager = stateManager;
     }
-
+    public TripContext getStateManager()
+    {
+        return stateManager;
+    }
 }

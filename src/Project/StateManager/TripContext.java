@@ -1,6 +1,8 @@
 package Project.StateManager;
 
 import JavaFX.Controller.MainSceneController;
+import Project.Payment.iPayment;
+import Project.Person.Person;
 import Project.StateManager.States.AddPackageState;
 import Project.StateManager.States.AddPaymentPersonState;
 import Project.StateManager.States.AddPaymentSelectState;
@@ -11,6 +13,7 @@ public class TripContext
     private iTripWriter state;
     private MainSceneController mainScene;
     private int stateIndex;
+    private Person selectedPerson;
     public TripContext(MainSceneController mainScene)
     {
         this.mainScene = mainScene;
