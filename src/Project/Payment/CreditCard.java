@@ -3,35 +3,76 @@ package Project.Payment;
 import Project.Person.Person;
 import Project.Reservation.Package;
 import Project.Reservation.Reservation;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CreditCard implements iPayment
+public class CreditCard
 {
-    private double totalPrice;
+    @JsonProperty("payAsGo")
+    private boolean payAsGo;
     private String creditCardNumber;
     private String creditCardDate;
     private String creditCardCSV;
+    @JsonProperty("amountPaid")
+    private double amountPaid;
     public CreditCard()
     {
-        totalPrice = 0;
+        amountPaid = 0;
+        payAsGo = false;
+    }
+    public CreditCard(double totalPrice)
+    {
+        amountPaid = 0;
+        payAsGo = false;
     }
 
-    @Override
-    public double getTotalPrice()
+    public void setAmountPaid(double amount)
     {
-        return totalPrice;
+        amountPaid = amount;
     }
 
-    public void setTotalPrice(double totalPrice)
+    public String getCreditCardNumber()
     {
-        this.totalPrice = totalPrice;
+        return creditCardNumber;
     }
 
-    @Override
-    public void calculatePayment(Reservation reservation)
+    public void setCreditCardNumber(String creditCardNumber)
     {
-        for(Package pack : reservation.getPackages())
-        {
-            totalPrice = totalPrice + pack.getPrice();
-        }
+        this.creditCardNumber = creditCardNumber;
     }
+
+    public String getCreditCardDate()
+    {
+        return creditCardDate;
+    }
+
+    public void setCreditCardDate(String creditCardDate)
+    {
+        this.creditCardDate = creditCardDate;
+    }
+
+    public String getCreditCardCSV()
+    {
+        return creditCardCSV;
+    }
+
+    public void setCreditCardCSV(String creditCardCSV)
+    {
+        this.creditCardCSV = creditCardCSV;
+    }
+
+    public boolean isPayAsGo()
+    {
+        return payAsGo;
+    }
+
+    public void setPayAsGo(boolean payAsGo)
+    {
+        this.payAsGo = payAsGo;
+    }
+
+    public double getAmountPaid()
+    {
+        return amountPaid;
+    }
+
 }

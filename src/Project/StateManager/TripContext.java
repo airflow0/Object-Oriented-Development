@@ -1,7 +1,7 @@
 package Project.StateManager;
 
 import JavaFX.Controller.MainSceneController;
-import Project.Payment.iPayment;
+
 import Project.Person.Person;
 import Project.StateManager.States.AddPackageState;
 import Project.StateManager.States.AddPaymentPersonState;

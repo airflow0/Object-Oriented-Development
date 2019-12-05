@@ -1,26 +1,27 @@
 package Project.StateManager.States;
 
-import Data.DataController;
 import JavaFX.Controller.MainSceneController;
+import Project.Decorator.Decorators.ThankYouDecorator;
+import Project.Decorator.Itinerary;
+import Project.Decorator.simpleItinerary;
 import Project.StateManager.TripContext;
 import Project.StateManager.iTripWriter;
 
-public class AddPaymentSelectState implements iTripWriter
+public class AddItineraryState implements iTripWriter
 {
     private MainSceneController mainScene;
     @Override
     public void state(TripContext context)
     {
+        context.setStateIndex(7);
         mainScene = context.getMainScene();
-        context.setStateIndex(3);
         load();
     }
 
     @Override
     public void load()
     {
-        mainScene.setPaymentPersonUI(true);
-
+        Itinerary itinerary = new ThankYouDecorator(new simpleItinerary());
+        mainScene.getItineraryTextArea().setText(itinerary.getDescription());
     }
-
 }

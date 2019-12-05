@@ -3,36 +3,55 @@ package Project.Payment;
 import Project.Person.Person;
 import Project.Reservation.Package;
 import Project.Reservation.Reservation;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Check implements iPayment
+public class Check
 {
-    private double totalPrice;
+    @JsonProperty("payAsGo")
+    private boolean payAsGo;
     private String accountNumber;
     private String routingNumber;
+    @JsonProperty("amountPaid")
+    private double amountPaid;
 
     public Check()
     {
-        totalPrice = 0;
+
+        amountPaid = 0;
+        payAsGo = false;
     }
 
-    @Override
-    public double getTotalPrice()
+    public Check(double totalPrice)
     {
-        return totalPrice;
+        amountPaid = 0;
+        payAsGo = false;
     }
-
-    public void setTotalPrice(double totalPrice)
+    public String getAccountNumber()
     {
-        this.totalPrice = totalPrice;
+        return accountNumber;
     }
-
-    @Override
-    public void calculatePayment(Reservation reservation)
+    public void setAmountPaid(double amount)
     {
-        for(Package pack : reservation.getPackages())
-        {
-            totalPrice = totalPrice + pack.getPrice();
-        }
+        amountPaid = amount;
     }
-
+    public void setAccountNumber(String accountNumber)
+    {
+        this.accountNumber = accountNumber;
+    }
+    public String getRoutingNumber()
+    {
+        return routingNumber;
+    }
+    public void setRoutingNumber(String routingNumber)
+    {
+        this.routingNumber = routingNumber;
+    }
+    public double getAmountPaid()
+    {
+        return amountPaid;
+    }
+    public void setPayAsGo(boolean payAsGo)
+    {
+        this.payAsGo = payAsGo;
+    }
 }

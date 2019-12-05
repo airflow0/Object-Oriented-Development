@@ -5,6 +5,7 @@ package Project.File.Writer;
 import Project.File.FileFactory.ReaderFactory;
 import Project.File.FileType.FileType;
 import Project.File.Interface.iWriter;
+import Project.Notes.ThankYou;
 import Project.Payment.Payment;
 import Project.Person.*;
 
@@ -208,6 +209,26 @@ public class JSONWriter implements iWriter
         try
         {
             mapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath + "/payment.json"), payment);
+        }
+        catch (JsonGenerationException e)
+        {
+            e.printStackTrace();
+        }
+        catch (JsonMappingException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public void writeThankYou(Path filePath, ThankYou note)
+    {
+        try
+        {
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath + "/thankyou.json"), note);
         }
         catch (JsonGenerationException e)
         {

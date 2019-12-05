@@ -61,6 +61,10 @@ public class DataController
         placeList = PlaceSingleton.getPlaceList();
 
     }
+    public static void saveThankYouNote()
+    {
+        WriterFactory.createWriter(FileType.JSON).writeThankYou(selectedTrip.getFilePath(), selectedTrip.getNote());
+    }
     public static void savePersonList()
     {
         WriterFactory.createWriter(FileType.JSON).writePerson(companies.get(selectedCompanyIndex).getFilePath(), companies.get(selectedCompanyIndex).getPeople());

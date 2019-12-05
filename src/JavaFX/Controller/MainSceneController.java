@@ -4,6 +4,8 @@ import Data.DataController;
 import JavaFX.Controller.MainScene.CompanyController;
 import JavaFX.Scenes.CreateCompanyScene;
 import JavaFX.Scenes.EditCompanyScene;
+import Project.Payment.Check;
+import Project.Payment.CreditCard;
 import Project.Payment.Payment;
 import Project.Person.Company;
 import Project.Person.Person;
@@ -319,8 +321,7 @@ public class MainSceneController
         }
         else
         {
-            Payment temp = new Payment(choosePersonCombo.getValue());
-            DataController.getSelectedTrip().setPayment(temp);
+            DataController.getSelectedTrip().getPayment().setPerson(choosePersonCombo.getValue());
             DataController.savePayment();
             setPaymentPersonUI(true);
             setPaymentTypeUIVisible(true);
@@ -331,6 +332,9 @@ public class MainSceneController
     }
     public void selectCreditCardClicked(MouseEvent e)
     {
+        creditCardLabel.setText("Credit Card Payment");
+        creditCardNum.setPromptText("Credit Card Number");
+        creditCardDate.setPromptText("Date");
         setPaymentTypeUI(true);
         setCreditCardVisible(true);
         stateManager.setState(new AddCreditCardState(), this);
@@ -351,14 +355,117 @@ public class MainSceneController
     }
     public void makePaymentClicked(MouseEvent e)
     {
-        setCreditCardUI(true);
+        if(stateManager.getStateIndex() == 4)
+        {
+            if(creditCardNum.getText().isEmpty() || creditCardDate.getText().isEmpty() || creditCardCSV.getText().isEmpty() || creditCardPayment.getText().isEmpty())
+            {
+                Alert.AlertType alertAlertType;
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Everything must be filled for a credit card transaction!");
+                alert.showAndWait();
+            }
+            else
+            {
+           /* if(creditCardPayment.getText().length() > 16)
+            {
+                //error
+            }
+            else if(creditCardDate.getText().length() > 4)
+            {
 
-        setThankYouVisible(true);
+            }
+            else if (creditCardCSV.getText().length() > 4)
+            {
+
+            }
+            else */if(Double.parseDouble(creditCardPayment.getText()) > DataController.getSelectedTrip().getPayment().getTotalPrice())
+            {
+                Alert.AlertType alertAlertType;
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Amount paid cannot be greater than total price!");
+                alert.showAndWait();
+            }
+            else
+            {
+
+                CreditCard temp = new CreditCard();
+                temp.setCreditCardNumber(creditCardNum.getText());
+                temp.setCreditCardDate(creditCardDate.getText());
+                temp.setCreditCardCSV(creditCardCSV.getText());
+                temp.setAmountPaid(Double.parseDouble(creditCardPayment.getText()));
+                if(Double.parseDouble(creditCardPayment.getText()) < DataController.getSelectedTrip().getPayment().getTotalPrice())
+                {
+                    temp.setPayAsGo(true);
+                }
+                double calculatedPayment = DataController.getSelectedTrip().getPayment().getTotalPrice() - Double.parseDouble(creditCardPayment.getText());
+                DataController.getSelectedTrip().getPayment().setCredit(temp);
+                DataController.getSelectedTrip().getPayment().setTotalPrice(calculatedPayment);
+                DataController.savePayment();
+                setCreditCardUI(true);
+                setThankYouVisible(true);
+                stateManager.setState(new AddThankYouState(), this);
+                stateManager.jumpState();
+            }
+            }
+        }
+        else if (stateManager.getStateIndex() == 5)
+        {
+            if(creditCardNum.getText().isEmpty() || creditCardDate.getText().isEmpty() || creditCardPayment.getText().isEmpty())
+            {
+                Alert.AlertType alertAlertType;
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Everything must be filled for a credit card transaction!");
+                alert.showAndWait();
+            }
+            else
+            {
+                if(Double.parseDouble(creditCardPayment.getText()) > DataController.getSelectedTrip().getPayment().getTotalPrice())
+                {
+                    Alert.AlertType alertAlertType;
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setContentText("Amount paid cannot be greater than total price!");
+                    alert.showAndWait();
+                }
+                else
+                {
+
+                    Check temp = new Check();
+
+                    temp.setAccountNumber(creditCardDate.getText());
+                    temp.setRoutingNumber(creditCardNum.getText());
+                    temp.setAmountPaid(Double.parseDouble(creditCardPayment.getText()));
+                    if(Double.parseDouble(creditCardPayment.getText()) < DataController.getSelectedTrip().getPayment().getTotalPrice())
+                    {
+                        temp.setPayAsGo(true);
+                    }
+                    double calculatedPayment = DataController.getSelectedTrip().getPayment().getTotalPrice() - Double.parseDouble(creditCardPayment.getText());
+                    DataController.getSelectedTrip().getPayment().setTotalPrice(calculatedPayment);
+                    DataController.getSelectedTrip().getPayment().setCheck(temp);
+                    DataController.savePayment();
+                    setCreditCardUI(true);
+                    setThankYouVisible(true);
+                    stateManager.setState(new AddThankYouState(), this);
+                    stateManager.jumpState();
+                }
+            }
+        }
+        else
+        {
+            //Something went wrong
+        }
+
 
     }
     public void printItineraryClicked(MouseEvent e)
     {
-
+        setThankYouUI(true);
+        setItineraryVisible(true);
+        stateManager.setState(new AddItineraryState(), this);
+        stateManager.jumpState();
     }
     public void laterClicked(MouseEvent e)
     {
@@ -376,10 +483,36 @@ public class MainSceneController
                 DataController.saveReservation();
                 break;
             case 2:
+                System.out.println("Later button 2");
+                DataController.saveTraveler();
+                DataController.saveReservation();
+                DataController.savePayment();
                 break;
             case 3:
+                System.out.println("Later button 3");
+                DataController.saveTraveler();
+                DataController.saveReservation();
+                DataController.savePayment();
                 break;
             case 4:
+                System.out.println("Later button 4");
+                DataController.saveTraveler();
+                DataController.saveReservation();
+                DataController.savePayment();
+                break;
+            case 5:
+                System.out.println("Later button 5");
+                DataController.saveTraveler();
+                DataController.saveReservation();
+                DataController.savePayment();
+                break;
+            case 6:
+                System.out.println("Later button 6");
+                DataController.saveTraveler();
+                DataController.saveReservation();
+                DataController.savePayment();
+                DataController.getSelectedTrip().getNote().setThankYouString(thankyouTextArea.getText());
+                DataController.saveThankYouNote();
                 break;
             default:
                 System.out.println("Error");
@@ -394,11 +527,12 @@ public class MainSceneController
         setItineraryVisible(false);
 
 
+
         setTripUI(false);
         setCompanyUI(false);
+        setCreditCardUI(false);
 
-
-
+        stateManager.setStateIndex(-1);
 
 
     }
@@ -881,5 +1015,55 @@ public class MainSceneController
     public void setCreditCardAmountDueLabel(Label creditCardAmountDueLabel)
     {
         this.creditCardAmountDueLabel = creditCardAmountDueLabel;
+    }
+
+    public Label getThankyouLabel()
+    {
+        return thankyouLabel;
+    }
+
+    public void setThankyouLabel(Label thankyouLabel)
+    {
+        this.thankyouLabel = thankyouLabel;
+    }
+
+    public TextArea getThankyouTextArea()
+    {
+        return thankyouTextArea;
+    }
+
+    public void setThankyouTextArea(TextArea thankyouTextArea)
+    {
+        this.thankyouTextArea = thankyouTextArea;
+    }
+
+    public Button getThankyouPrintItinerary()
+    {
+        return thankyouPrintItinerary;
+    }
+
+    public void setThankyouPrintItinerary(Button thankyouPrintItinerary)
+    {
+        this.thankyouPrintItinerary = thankyouPrintItinerary;
+    }
+
+    public Label getItineraryLabel()
+    {
+        return itineraryLabel;
+    }
+
+    public void setItineraryLabel(Label itineraryLabel)
+    {
+        this.itineraryLabel = itineraryLabel;
+    }
+
+    public TextArea getItineraryTextArea()
+    {
+        return itineraryTextArea;
+    }
+
+    public void setItineraryTextArea(TextArea itineraryTextArea)
+    {
+        this.itineraryTextArea = itineraryTextArea;
     }
 }

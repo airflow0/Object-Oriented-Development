@@ -1,5 +1,6 @@
 package Project.File.Interface;
 
+import Project.Notes.ThankYou;
 import Project.Payment.Payment;
 import Project.Person.Agent;
 import Project.Person.Company;
@@ -22,4 +23,5 @@ public interface iReader
     Payment readPaymentFromFile(Path filePath);
     List<Place> readPlaceList();
     List<Person> readPersonList(Path filePath);
+    ThankYou readThankYou(Path filePath);
 }

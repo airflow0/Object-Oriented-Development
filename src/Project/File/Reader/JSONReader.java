@@ -1,6 +1,7 @@
 package Project.File.Reader;
 
 import Project.File.Interface.iReader;
+import Project.Notes.ThankYou;
 import Project.Payment.Payment;
 import Project.Person.Agent;
 import Project.Person.Company;
@@ -236,6 +237,37 @@ public class JSONReader implements iReader
 
         }
         catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return temp;
+    }
+    @Override
+    public ThankYou readThankYou(Path filePath)
+    {
+        Path tempPath = Paths.get(filePath + "/thankyou.json");
+        ThankYou temp = new ThankYou();
+        try
+        {
+            File file = new File(tempPath.toString());
+            if(file.length() == 0)
+            {
+                return temp;
+            }
+            else
+            {
+                temp = mapper.readValue(new File(filePath + "/thankyou.json"), ThankYou.class);
+            }
+        }
+        catch (JsonParseException e)
+        {
+            e.printStackTrace();
+        }
+        catch (JsonMappingException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
         {
             e.printStackTrace();
         }
